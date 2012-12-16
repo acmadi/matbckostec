@@ -5,7 +5,7 @@ $hostname = 'localhost';
 $username = 'root';
 /*** mysql password ***/
 $password = '';
-$dbname='mat_kostec';
+$dbname='mrpkostec_ckr';
 
 try {
     /*** connect to MYSQL database ***/

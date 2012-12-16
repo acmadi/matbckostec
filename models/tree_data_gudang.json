@@ -49,8 +49,6 @@
 			"text":"Transaction",
 			"state":"closed",  
 			"children":[{  
-				"text":"<a href=\"material/so_import_frm.php?NmMenu=Import Purchase Order Customer\" target=\"content\">Import PO Customer</a>"
-			},{ 				
 				"text":"<a href=\"material/so_frm.php?NmMenu=Purchase Order Customer\" target=\"content\">PO Customer</a>"
 			},{  
 				"text":"<a href=\"material/wo_frm.php?NmMenu=Work Order\" target=\"content\">Work Order (WO)</a>"
@@ -136,15 +134,7 @@
 							"text":"<a href=\"material/wip_inout_list.php?NmMenu=WIP Out&type=O\" target=\"content\">WIP Out</a>"	
 						},{ 							
 							"text":"<a href=\"material/do_list.php?NmMenu=Delivery Order\" target=\"content\">Delivery Order (DO)</a>"				
-						}]
-					},{	
-						"text":"<a href=\"material/stock_opnamemat_list.php?NmMenu=Stock Opname Material\" target=\"content\">Stock Opname Mat.</a>"
-					},{ 
-						"text":"<a href=\"material/stock_opname_list.php?NmMenu=Stock Opname Finished Goods\" target=\"content\">Stock Opname FG</a>"
-					},{ 
-						"text":"<a href=\"material/stock_adjustmat_list.php?NmMenu=Stock Adjustment Raw Material\" target=\"content\">Stock Adjustment Mat.</a>"		
-					},{ 
-						"text":"<a href=\"material/stock_adjust_list.php?NmMenu=Stock Adjustment Finished Goods\" target=\"content\">Stock Adjustment FG</a>"				
+						}]			
 					}]	
 			},{
 				"text":"Executive Report",

@@ -45,7 +45,7 @@ if(isset($_REQUEST['fUserName'])){
 			  $qc= "SELECT * FROM mst_perusahaan WHERE TpPrshn='o' LIMIT 1";
 			  $runc = $pdo->query($qc);
 			  $rsc = $runc->fetchAll(PDO::FETCH_ASSOC);
-			  $_SESSION["c_name"]= "PT. KOSTEC INDONESIA";
+			  $_SESSION["c_name"]= "PT. KOSTEC INDONESIA (CIKARANG)";
 			  $_SESSION["c_address"]= $rsc[0]['AlmtPrshn'];
 			  $_SESSION["c_kota"]= $rsc[0]['Kota'];
 			  $_SESSION["npwp"] = $rsc[0]['NpwpPrshn'];
@@ -69,6 +69,7 @@ if(isset($_REQUEST['fUserName'])){
 			  $qlog= "INSERT INTO log VALUES (0,'$tgl','$usr','$ket')";
 			  $runqlog = $pdo->query($qlog);
 			  echo json_encode(array('success'=>true,'msg'=>'Login Berhasil!'));
+			  echo
 			  exit;
 			} else {
 			  $errmsg="Login Gagal, Password yang anda masukan salah!";	
