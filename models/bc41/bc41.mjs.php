@@ -246,7 +246,8 @@ function setdg2(){
 }
 
 function setdg2Url(row){
-	//$('#NmTuj').val(row.supplier);
+	$('#HrgSerah').numberbox('setValue',row.tot_amount);
+	$('#NETTO').numberbox('setValue',row.tot_qty);
 	$('#dg2').datagrid({  
 		url: '<?php echo $basedir ?>models/bc41/bc41_grid.php?req=outdet&matout_id='+row.matout_id
 	});
@@ -524,7 +525,7 @@ function btnSim(){
 
 function cari(){					
 	$('#dgCari').datagrid({  
-		url:"<?php echo $basedir ?>models/bc41/bc41_grid.php?req=dgCari&dtdari="+$('#dtdari').combo('getValue')+"&dtsampai="+$('#dtsampai').combo('getValue')
+		url:"<?php echo $basedir ?>models/bc41/bc41_grid.php?req=dgCari&dtdari="+$('#dtdari').datebox('getValue')+"&dtsampai="+$('#dtsampai').datebox('getValue')
 	});
 	$('#dgCari').datagrid('load');
 }

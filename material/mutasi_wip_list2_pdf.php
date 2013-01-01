@@ -116,7 +116,7 @@ $mat_type = $_REQUEST["mat_type"];
 $date1 = dmys2ymd($_REQUEST["date1"]);
 $date2 = dmys2ymd($_REQUEST["date2"]);
 
-$q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
+$q = "SELECT KdBarang,NmBarang,HsNo,Sat,
 	  (
 	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$date1."' AND s.mat_id = a.KdBarang AND type IN ('B','I'))	  
 	  -
@@ -132,7 +132,7 @@ $q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
 	  ) AS qty_in,
 	  
 	  (
-	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mkt_dodet da LEFT JOIN mkt_dohdr db ON db.do_id=da.do_id WHERE da.fg_id = a.KdBarang AND do_date BETWEEN '".$date1."' AND '".$date2."')
+	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE s.mat_id = a.KdBarang AND type IN ('O') AND date  BETWEEN '".$date1."' AND '".$date2."' )
 	  ) AS qty_out,
 	  
 	  (
@@ -162,7 +162,6 @@ $html = '<h2>'.$NmMenu.'</h2>'.
 		  <th align="center" width="25"><b>No.</b></th>
 		  <th width="80"><b>Part Code</b></th>
 		  <th width="80"><b>Part No.</b></th>
-		  <th width="80"><b>Part Name</b></th>
 		  <th align="center" width="30"><b>Unit</b></th>
 		  <th align="right"><b>Previous Balance</b></th>
 		  <th align="right"><b>Incoming</b></th>
@@ -179,7 +178,6 @@ $qty_end=$r['qty_beg']+$r['qty_in']-$r['qty_out'];
 $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
 		 '<td width="80">'.$r['KdBarang'].'</td>'.
-		 '<td width="80">'.$r['PartNo'].'</td>'.
 		 '<td width="80">'.$r['NmBarang'].'</td>'.
 		 '<td align="center" width="30">'.$r['Sat'].'</td>'.
 		 '<td align="right">'.$r['qty_beg'].'</td>'.

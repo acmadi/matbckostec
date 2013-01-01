@@ -21,6 +21,7 @@ $StatusKB=$_REQUEST['StatusKB'];
 $NoTpb=$_REQUEST['NoTpb'];
 $Niper=$_REQUEST['Niper'];
 $Cp=$_REQUEST['Cp'];
+$Valuta=$_REQUEST['Valuta'];
 $NoPokokPpjk=$_REQUEST['NoPokokPpjk'];
 $TgPokokPpjk=dmys2ymd($_REQUEST['TgPokokPpjk']);
 $aksi=$_REQUEST['aksi'];
@@ -38,9 +39,9 @@ try {
 		$rstuj = $rec->fetchAll(PDO::FETCH_ASSOC);
 		if (count($rstuj) == 0){
 			$sql[]="INSERT INTO mst_perusahaan (	
-					  NmPrshn,TpPrshn,NpwpPrshn,AlmtPrshn,Kota,Prov,Negara,fax,tlp,Status,StatusKB,NoTpb,Niper,Cp,NoPokokPpjk,TgPokokPpjk
+					  NmPrshn,TpPrshn,NpwpPrshn,AlmtPrshn,Kota,Prov,Negara,fax,tlp,Status,StatusKB,NoTpb,Niper,Cp,Valuta,NoPokokPpjk,TgPokokPpjk
 					) VALUES (
-					  '$NmPrshn','$TpPrshn','$NpwpPrshn','$AlmtPrshn','$Kota','$Prov','$Negara','$fax','$tlp','$Status','$StatusKB','$NoTpb','$Niper','$Cp','$NoPokokPpjk','$TgPokokPpjk'
+					  '$NmPrshn','$TpPrshn','$NpwpPrshn','$AlmtPrshn','$Kota','$Prov','$Negara','$fax','$tlp','$Status','$StatusKB','$NoTpb','$Niper','$Cp','$Valuta','$NoPokokPpjk','$TgPokokPpjk'
 					)";
 					
 			$ketlog="tambah data $NmMenu $NmPrshn";
@@ -56,7 +57,7 @@ try {
 				NmPrshn='$NmPrshn',NpwpPrshn='$NpwpPrshn',TpPrshn='$TpPrshn',
 				AlmtPrshn='$AlmtPrshn',Kota='$Kota',
 				Prov='$Prov',Negara='$Negara',fax='$fax',tlp='$tlp',Status='$Status',StatusKB='$StatusKB',NoTpb='$NoTpb',
-				Niper='$Niper',Cp='$Cp',NoPokokPpjk='$NoPokokPpjk',
+				Niper='$Niper',Cp='$Cp',Valuta='$Valuta',NoPokokPpjk='$NoPokokPpjk',
 				TgPokokPpjk='$TgPokokPpjk'									
 				WHERE NmPrshn='$NmPrshn0'";
 		

@@ -11,12 +11,12 @@ $autono=($rs)?$rs[0]['auto_no']:1;
 //$carno = str_pad($autono, 6, "0", STR_PAD_LEFT);
 $carno = str_pad($autono, 6, "0", STR_PAD_LEFT);
 
-$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='7' ORDER BY right(CAR,3) DESC LIMIT 1";
+/*$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='7' ORDER BY right(NoDaf,3) DESC LIMIT 1";
 $run = $pdo->query($q);
 $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autonodaf=($rs)?$rs[0]['auto_nodaf']:1;
 $NoDaf = "000.".str_pad($autonodaf, 3, "0", STR_PAD_LEFT);
-
+*/
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,11 +44,16 @@ require_once "bc30.cjs.php";
 <body oncontextmenu="return false;">
 <div id="w" style="padding:5px;">
 <form id="frm" name="frm" action="" method="post">
-    <div class="easyui-tabs" tools="#tab-tools" style="width:710px;height:760px;">               
+    <div class="easyui-tabs" tools="#tab-tools" style="width:710px;height:850px;">               
         <div title="Data Umum" style="padding:10px;">
-        <div id="ref">
-          Ref No. <select id="ref_id" name="ref_id"></select>
-        </div>
+        <div class="demo-info" style="margin-bottom:10px">
+            <div class="demo-tip icon-tip">&nbsp;</div>
+            <div>
+            Klik/pilih Penerima Terlebih dahulu..
+            Setelah itu pilih Ref. No..
+            Lengkapi data-data lainnya.
+            </div>
+        </div>        
         
         <table>        
         <tr>        
@@ -239,6 +244,12 @@ require_once "bc30.cjs.php";
 					}
 					?>
               </select></td>
+              </tr>
+              <tr>
+                <td>Ref No.</td>
+                <td colspan="3">
+           			<select id="ref_id" name="ref_id"></select>
+                </td>
               </tr>
             </table>
             </fieldset class="borderblue">

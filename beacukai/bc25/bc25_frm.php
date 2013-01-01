@@ -11,11 +11,12 @@ $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autono=($rs)?$rs[0]['auto_no']:1;
 $carno = str_pad($autono, 6, "0", STR_PAD_LEFT);
 
-$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='3' ORDER BY right(CAR,3) DESC LIMIT 1";
+/*$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='3' ORDER BY right(NoDaf,3) DESC LIMIT 1";
 $run = $pdo->query($q);
 $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autonodaf=($rs)?$rs[0]['auto_nodaf']:1;
 $NoDaf = "000.".str_pad($autonodaf, 3, "0", STR_PAD_LEFT);
+*/
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,10 +50,14 @@ require_once "bc25.cjs.php";
 <form id="frm" name="frm" action="" method="post">
     <div class="easyui-tabs" tools="#tab-tools" style="width:710px;height:470px;">               
         <div title="Data Umum" style="padding:10px;">
-        <div id="ref">
-          Ref No. <select id="ref_id" name="ref_id"></select>
-        </div>
-        
+        <div class="demo-info" style="margin-bottom:10px">
+            <div class="demo-tip icon-tip">&nbsp;</div>
+            <div>
+            Klik/pilih Pembeli Terlebih dahulu..
+            Setelah itu pilih Ref. No..
+            Lengkapi data-data lainnya.
+            </div>
+        </div>        
         <table>        
         <tr>        
           <td>                     	        	        
@@ -197,11 +202,11 @@ require_once "bc25.cjs.php";
             <fieldset class="borderblue">            
             <table cellspacing="0" class="sub_table" width="100%">
             <tr>
-              <td colspan="2"><b>PEMBELI</b></td>  
+              <td colspan="4"><b>PEMBELI</b></td>  
               </tr>
             <tr>
-              <td width="19%">Nama</td>
-              <td width="81%">
+              <td width="15%">Nama</td>
+              <td width="35%">
                 <select id="NmTuj" name="NmTuj" style="width:200px;">
                   <option value=""></option>
                   <?php 
@@ -215,6 +220,10 @@ require_once "bc25.cjs.php";
 					}
 					?>
                   </select>
+              </td>
+              <td width="11%">Ref No.</td>
+              <td width="39%">
+                   <select id="ref_id" name="ref_id"></select>
               </td>
               </tr>
             </table>

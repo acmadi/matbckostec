@@ -108,7 +108,7 @@ $pdf->setLanguageArray($l);
 $pdf->SetFont('helvetica', '', 8);
 
 // add a page
-$pdf->AddPage('L');
+$pdf->AddPage('P');
 
 //Data loading
 $TpBarang=$_REQUEST["TpBarang"];
@@ -133,19 +133,12 @@ $html = '<h2>'.$NmMenu.'</h2>
 		<thead>
 		<tr>
 		  <th align="center" width="25"><b>No.</b></th>
-		  <th width="80"><b>Mat. Group</b></th>
 		  <th><b>Mat. Code</b></th>
+		  <th width="80"><b>Mat. Group</b></th>
 		  <th width="125"><b>Desc.</b></th>
-		  <th width="70"><b>HS No.</b></th>
+		  <th><b>Size</b></th>		  
 		  <th width="80"><b>Die No.</b></th>
-		  <th align="right" width="50"><b>UW/m.</b></th>
-		  <th align="right" width="50"><b>L/Pc</b></th>
-		  <th align="right" width="50"><b>W/Pcs</b></th>
-		  <th align="right" width="50"><b>L/Bar</b></th>
-		  <th align="right" width="50"><b>Pc/Bar</b></th>
-		  <th align="right" width="50"><b>WBar</b></th>
-		  <th><b>Finish</b></th>
-		  <th><b>twhmp</b></th>
+		  <th width="70"><b>HS No.</b></th>		  
 		  <th><b>Unit</b></th>
 		</tr>
 		</thead>
@@ -153,20 +146,13 @@ $html = '<h2>'.$NmMenu.'</h2>
 $no=1;
 foreach ($rs as $r){
 $html .= '<tr>'.
-	  	 '<td align="center" width="25">'.$no.'</td>'.
-		 '<td width="80">'.$r['matgroup_name'].'</td>'.
+	  	 '<td align="center" width="25">'.$no.'</td>'.		 
 		 '<td>'.$r['KdBarang'].'</td>'.
+		 '<td width="80">'.$r['matgroup_name'].'</td>'.
 		 '<td width="125">'.$r['NmBarang'].'</td>'.
+		 '<td>'.$r['twhmp'].'</td>'.		 
+		 '<td width="80">'.$r['DieNo'].'</td>'.		 
 		 '<td width="70">'.$r['HsNo'].'</td>'.
-		 '<td width="80">'.$r['DieNo'].'</td>'.
-		 '<td align="right" width="50">'.$r['UWm'].'</td>'.
-		 '<td align="right" width="50">'.$r['LPc'].'</td>'.
-		 '<td align="right" width="50">'.$r['WPcs'].'</td>'.
-		 '<td align="right" width="50">'.$r['LBar'].'</td>'.
-		 '<td align="right" width="50">'.$r['PcBar'].'</td>'.
-		 '<td align="right" width="50">'.$r['WBar'].'</td>'.
-		 '<td>'.$r['Finish'].'</td>'.
-		 '<td>'.$r['twhmp'].'</td>'.
 		 '<td>'.$r['Sat'].'</td>'.
 		 '</tr>';
 $no+=1;	

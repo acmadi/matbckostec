@@ -11,11 +11,12 @@ $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autono=($rs)?$rs[0]['auto_no']:1;
 $carno = str_pad($autono, 6, "0", STR_PAD_LEFT);
 
-$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='9' ORDER BY right(CAR,3) DESC LIMIT 1";
+/*$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='9' ORDER BY right(NoDaf,3) DESC LIMIT 1";
 $run = $pdo->query($q);
 $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autonodaf=($rs)?$rs[0]['auto_nodaf']:1;
 $NoDaf = "000.".str_pad($autonodaf, 3, "0", STR_PAD_LEFT);
+*/
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,9 +48,14 @@ require_once "bc41.cjs.php";
 <form id="frm" name="frm" action="" method="post">
     <div class="easyui-tabs" tools="#tab-tools" style="width:710px;height:470px;">               
         <div title="Data Umum" style="padding:10px;">
-        <div id="ref">
-          Ref No. <select id="ref_id" name="ref_id"></select>
-        </div>
+        <div class="demo-info" style="margin-bottom:10px">
+            <div class="demo-tip icon-tip">&nbsp;</div>
+            <div>
+            Klik/pilih Penerima Barang Terlebih dahulu..
+            Setelah itu pilih Ref. No..
+            Lengkapi data-data lainnya.
+            </div>
+        </div>      
         
         <table>        
         <tr>        
@@ -195,8 +201,11 @@ require_once "bc41.cjs.php";
 					?>
               </select>
               </td>
-              <td width="12%">&nbsp;</td>
-              <td width="38%">&nbsp;</td>
+              <td colspan="2">
+              <div id="ref">
+                  Ref No. <select id="ref_id" name="ref_id"></select>
+                </div>
+              </td>
               </tr>
             </table>
             </fieldset>
@@ -253,8 +262,8 @@ require_once "bc41.cjs.php";
 					?>
                     </select>
               <input type="text" id="HrgSerah" name="HrgSerah" class="easyui-numberbox" precision="2" groupSeparator="," maxlength="10" size="12" tabindex="30"></td>
-              <td width="18%">&nbsp;</td>
-              <td width="32%">&nbsp;</td>
+              <td colspan="2">
+              </td>
             </tr>
             </table>
         </fieldset>          

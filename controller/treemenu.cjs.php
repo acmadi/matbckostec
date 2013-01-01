@@ -1,12 +1,21 @@
 <?php 
 $grp=$_SESSION['grup']; 
 switch ($grp){
-	case "admin"://< jika /folder_root/
+	case "admin":
 		$tm = "tree_data";
 		break;
-	case "gudang"://< jika /folder_root/sub1_root/
-		$tm = "tree_data_gudang";
+	case "marketing":
+		$tm = "tree_data_mkt";
 		break;
+	case "gudang":
+		$tm = "tree_data_gudang";
+		break;	
+	case "purchasing":
+		$tm = "tree_data_pur";
+		break;
+	case "produksi":
+		$tm = "tree_data_prod";
+		break;	
 	case "exim":
 		$tm = "tree_data_exim";
 		break;

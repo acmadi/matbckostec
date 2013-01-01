@@ -8,11 +8,16 @@ $mat_type = $_REQUEST["mat_type"];
 $date1 = dmys2ymd($_REQUEST["date1"]);
 $date2 = dmys2ymd($_REQUEST["date2"]);
 
-$q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
+$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 25;
+$offset = ($page-1)*$rows;
+$result = array();
+
+$q = "SELECT KdBarang,NmBarang,Ket,Sat,
 	  (
 	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$date1."' AND s.mat_id = a.KdBarang AND type IN ('B','I'))	  
 	  -
-	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mkt_dodet da LEFT JOIN mkt_dohdr db ON db.do_id=da.do_id WHERE do_date < '".$date1."' AND da.fg_id = a.KdBarang)
+	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_outdet da LEFT JOIN mat_outhdr db ON db.matout_id=da.matout_id WHERE matout_date < '".$date1."' AND da.mat_id = a.KdBarang)
 	  +
 	  (SELECT IF(SUM(qty_in)>0,SUM(qty_in),0) FROM mat_opnamedet oa LEFT JOIN mat_opnamehdr ob ON ob.opname_id=oa.opname_id WHERE opname_date < '".$date1."' AND oa.mat_id = a.KdBarang)
 	  -
@@ -24,7 +29,7 @@ $q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
 	  ) AS qty_in,
 	  
 	  (
-	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mkt_dodet da LEFT JOIN mkt_dohdr db ON db.do_id=da.do_id WHERE da.fg_id = a.KdBarang AND do_date BETWEEN '".$date1."' AND '".$date2."')
+	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_outdet da INNER JOIN mat_outhdr db ON db.matout_id=da.matout_id AND db.mat_type='0' WHERE da.mat_id = a.KdBarang AND matout_date BETWEEN '".$date1."' AND '".$date2."')
 	  ) AS qty_out,
 	  
 	  (
@@ -41,8 +46,16 @@ $q .= "FROM mst_barang a
 	  WHERE a.TpBarang='$mat_type' 
 	  ORDER BY KdBarang ASC";
 
+$runtot=$pdo->query($q);
+$rstot=$runtot->fetchAll(PDO::FETCH_ASSOC);
 
-$run=$pdo->query($q);	
+$q .= " LIMIT $offset,$rows";
+$run=$pdo->query($q);
 $rs=$run->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($rs);
+
+$result["total"] = count($rstot);
+$result["rows"] = $rs;
+
+echo json_encode($result);
+//echo $q;
 ?>

@@ -340,7 +340,7 @@ endfor;
   <td align="right" colspan="4" style="vertical-align:bottom"><?php echo $totQty." ".$rsBarang[0]['Sat'] ?> &nbsp; &nbsp; &nbsp; </td>
   <td class="noborderright">&nbsp;</td>
   <td class="noborderright" style="vertical-align:bottom"><?php echo $rs[0]['KdVal'] ?></td>
-  <td align="right" colspan="2" style="vertical-align:bottom"><?php echo number_format($totHrgSerah,2) ?>&nbsp;&nbsp;</td>
+  <td align="right" colspan="2" style="vertical-align:bottom"><?php echo $totHrgSerah ?>&nbsp;&nbsp;</td>
 </tr>
 <tr>
   <td colspan="8"><b>G. UNTUK PEJABAT BEA DAN CUKAI</b></td>

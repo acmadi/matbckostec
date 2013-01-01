@@ -115,7 +115,7 @@ $mat_type = $_REQUEST["mat_type"];
 $date1 = dmys2ymd($_REQUEST["date1"]);
 $date2 = dmys2ymd($_REQUEST["date2"]);
 
-$q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
+$q = "SELECT KdBarang,NmBarang,matgroup_name,twhmp,Sat,
 	  (
 	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$date1."' AND s.mat_id = a.KdBarang AND type = 'B')
 	  +
@@ -163,6 +163,7 @@ $q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
 	  ) AS qty, 0 AS qty_end, FORMAT(0,2) AS qty_diff
 	   ";
 $q .= "FROM mst_barang a 
+	   LEFT JOIN mat_group b ON b.matgroup_code=a.MatGroup
 	  WHERE a.TpBarang='$mat_type' 
 	  ORDER BY KdBarang ASC";
 
@@ -176,8 +177,9 @@ $html = '<h2>'.$NmMenu.'</h2>'.
 		<thead>
 		<tr>
 		  <th align="center" rowspan="2" width="25"><b>No.</b></th>
-		  <th width="80" rowspan="2"><b>Mat. Code</b></th>
-		  <th width="100" rowspan="2"><b>Desc.</b></th>
+		  <th width="50" rowspan="2"><b>Mat. Code</b></th>
+		  <th width="100" rowspan="2"><b>Mat. Group</b></th>
+		  <th width="100" rowspan="2"><b>Size</b></th>
 		  <th align="center" rowspan="2" width="30"><b>Unit</b></th>
 		  <th align="right" rowspan="2"><b>Beginning Balance</b></th>
 		  <th align="center" colspan="3"><b>Incoming</b></th>
@@ -201,8 +203,9 @@ $qty_end=$r['qty_beg']+$r['qty_in']-$r['qty_out'];
 
 $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
-		 '<td width="80">'.$r['KdBarang'].'</td>'.
-		 '<td width="100">'.$r['NmBarang'].'</td>'.
+		 '<td width="50">'.$r['KdBarang'].'</td>'.
+		 '<td width="100">'.$r['matgroup_name'].'</td>'.
+		 '<td width="100">'.$r['twhmp'].'</td>'.
 		 '<td align="center" width="30">'.$r['Sat'].'</td>'.
 		 '<td align="right">'.$r['qty_beg'].'</td>'.
 		 '<td align="right">'.$r['qty_in0'].'</td>'.

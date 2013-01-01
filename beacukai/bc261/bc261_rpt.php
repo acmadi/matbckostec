@@ -290,7 +290,10 @@ table.tablereport tfoot tr td {
   <td class="noborderrb">:</td>
   <td class="noborderrb" colspan="4"><?php echo $rs[0]['KdVal'] ?></td>
   <td class="noborderrb" colspan="4">16. Nilai CIF</td>
-  <td class="noborderbtm" colspan="5">: USD <?php echo number_format($rs[0]['CIF']/$rs[0]['NDPBM'],2) ?></td>
+  <td class="noborderbtm" colspan="5">: USD 
+  <?php 
+  $ndpbm=($rs[0]['NDPBM']>0)?$rs[0]['NDPBM']:1;
+  echo number_format($rs[0]['CIF']/$ndpbm,2) ?></td>
 </tr>
 <tr>
   <td class="noborderright" colspan="3">15. NDPBM</td>

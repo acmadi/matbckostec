@@ -203,9 +203,13 @@ require_once "po_frm.cjs.php";
       <td width="115">Mat. Code</td>
       <td width="319"><input name="KdBarang3" type="hidden" id="KdBarang3" class="easyui-validatebox" value=""><input id="KdBarang2" name="KdBarang2" type="text" style="width:100px"></td>
     </tr>
+	<tr>
+      <td width="115">Mat. Group</td>
+      <td width="319"><input id="matgroup_name" name="matgroup_name" type="text" style="width:100px"></td>
+    </tr>
     <tr>
-      <td>Desc.</td>
-      <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
+      <td>Size</td>
+      <td><input name="twhmp" type="text" id="twhmp" style="width:150px" readonly></td>
     </tr>
     <tr>
       <td>Unit</td>
@@ -232,6 +236,10 @@ require_once "po_frm.cjs.php";
     <tr>
       <td>Amount</td>
       <td><input name="amount" type="text" id="amount" value="" style="width:100px" readonly></td>
+    </tr>
+	<tr>
+      <td>Remark</td>
+      <td><input name="remark_det" type="text" id="remark_det" value="" style="width:100px"></td>
     </tr>
     </table>
     <input type="submit" id="btnSubmit2" name="btnSubmit2" style="display:none">

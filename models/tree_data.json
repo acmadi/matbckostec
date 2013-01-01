@@ -59,7 +59,9 @@
 				"state":"closed",  
 				"children":[{  
 					"text":"<a href=\"material/matin_frm.php?NmMenu=Incoming Material\" target=\"content\">Incoming Material (IN)</a>"
-				},{ 					
+				},{ 	
+					"text":"<a href=\"material/scrap_in_frm.php?NmMenu=Scrap In\" target=\"content\">Scrap In</a>"							
+				},{ 				
 					"text":"<a href=\"material/wip_frm.php?NmMenu=WIP In&type=I\" target=\"content\">WIP In</a>"					
 				},{ 			 
 					"text":"<a href=\"material/fg_prod_result_frm.php?NmMenu=Finished Goods Production Result\" target=\"content\">FG Production Result</a>"
@@ -111,6 +113,8 @@
 						"children":[{ 
 							"text":"<a href=\"material/matin_list.php?NmMenu=Incoming Material\" target=\"content\">Incoming Material</a>"
 						},{  
+							"text":"<a href=\"material/scrap_in_list.php?NmMenu=Scrap In\" target=\"content\">Scrap In</a>"	
+						},{
 							"text":"<a href=\"material/wip_inout_list.php?NmMenu=WIP In&type=I\" target=\"content\">WIP In</a>"
 						},{  
 							"text":"<a href=\"material/fg_prod_result_list.php?NmMenu=FG Production Result\" target=\"content\">FG Production Result</a>"
@@ -127,14 +131,6 @@
 						},{ 							
 							"text":"<a href=\"material/do_list.php?NmMenu=Delivery Order\" target=\"content\">Delivery Order (DO)</a>"				
 						}]
-					},{	
-						"text":"<a href=\"material/stock_opnamemat_list.php?NmMenu=Stock Opname Material\" target=\"content\">Stock Opname Mat.</a>"
-					},{ 
-						"text":"<a href=\"material/stock_opname_list.php?NmMenu=Stock Opname Finished Goods\" target=\"content\">Stock Opname FG</a>"
-					},{ 
-						"text":"<a href=\"material/stock_adjustmat_list.php?NmMenu=Stock Adjustment Raw Material\" target=\"content\">Stock Adjustment Mat.</a>"		
-					},{ 
-						"text":"<a href=\"material/stock_adjust_list.php?NmMenu=Stock Adjustment Finished Goods\" target=\"content\">Stock Adjustment FG</a>"				
 					}]	
 			},{
 				"text":"Executive Report",
@@ -184,8 +180,10 @@
 		},{  
 			"text":"<a href=\"beacukai/bc262/bc262_frm.php?NmMenu=BC 2.6.2 (PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI TPB DENGAN JAMINAN)\" target=\"content\">Form BC 2.6.2</a>"
 		},{  
-			"text":"<a href=\"beacukai/bc27/bc27_frm.php?NmMenu=BC 2.7 (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7</a>"
-		},{  
+			"text":"<a href=\"beacukai/bc27/bc27_frm.php?ket=in&NmMenu=BC 2.7 In(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7 In</a>"
+		},{
+			"text":"<a href=\"beacukai/bc27/bc27_frm.php?ket=out&NmMenu=BC 2.7 Out(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7 Out</a>"
+		},{   
 			"text":"<a href=\"beacukai/bc30/bc30_frm.php?NmMenu=BC 3.0 (PEMBERITAHUAN EKSPOR BARANG)\" target=\"content\">Form BC 3.0</a>"	
 		},{  
 			"text":"<a href=\"beacukai/bc40/bc40_frm.php?NmMenu=BC 4.0 (PEMASUKAN BARANG ASAL TEMPAT LAIN DALAM DAERAH PABEAN KE TEMPAT PENIMBUNAN BERIKAT)\" target=\"content\">Form BC 4.0</a>"	
@@ -204,8 +202,10 @@
 		},{  
 			"text":"<a href=\"beacukai/bc262/bc262_pilap.php?NmMenu=LAPORAN BC 2.6.2 (PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI TPB DENGAN JAMINAN)\" target=\"content\">BC 2.6.2</a>"
 		},{  
-			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?NmMenu=LAPORAN BC 2.7 (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7</a>"
-		},{  
+			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?ket=in&NmMenu=LAPORAN BC 2.7 In(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7 In</a>"
+		},{ 
+			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?ket=out&NmMenu=LAPORAN BC 2.7 Out (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7 Out</a>"
+		},{
 			"text":"<a href=\"beacukai/bc30/bc30_pilap.php?NmMenu=LAPORAN BC 3.0 (PEMBERITAHUAN EKSPOR BARANG)\" target=\"content\">BC 3.0</a>"	
 		},{  
 			"text":"<a href=\"beacukai/bc40/bc40_pilap.php?NmMenu=LAPORAN BC 4.0 (PEMASUKAN BARANG ASAL TEMPAT LAIN DALAM DAERAH PABEAN KE TEMPAT PENIMBUNAN BERIKAT)\" target=\"content\">BC 4.0</a>"	

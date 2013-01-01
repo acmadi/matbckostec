@@ -3,14 +3,15 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
-		fitColumns:false,
-		rownumbers:"true",
-		frozenColumns:[[  
+		fitColumns:true,
+		rownumbers:true,
+		pagination:true,
+		pageList:[25,50,75,100],
+		columns:[[  
 			{field:'KdBarang',title:'Kode Barang',width:80},  
-			//{field:'PartNo',title:'Part No.',width:80}, 
-			{field:'NmBarang',title:'Nama Barang',width:100},   
+			{field:'NmBarang',title:'Nama Barang',width:120},   
 			{field:'Sat',title:'Sat.',width:50}, 
 			{field:'qty_end',title:'Jumlah',width:90,align:'right',formatter: function(value,row,index){				
 				qty_beg=parseFloat(row.qty_beg);

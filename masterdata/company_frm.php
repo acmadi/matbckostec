@@ -54,11 +54,11 @@ require_once "mst_frm.cjs.php";
       <td valign="top">Alamat</td>
       <td><textarea name="AlmtPrshn" cols="30" required class="easyui-validatebox" id="AlmtPrshn"></textarea></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>Kota</td>
       <td><input name="Kota" type="text" id="Kota" class="easyui-validatebox" value="" size="20" maxlength="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>Provinsi</td>
       <td><input name="Prov" type="text" id="Prov" class="easyui-validatebox" value="" size="30" maxlength="30">
       </td>
@@ -116,6 +116,18 @@ require_once "mst_frm.cjs.php";
     <tr>
       <td valign="top">Contact Person</td>
       <td><input name="Cp" type="text" id="Cp" value="" size="20" maxlength="20"></td>
+    </tr>
+    <tr>
+      <td valign="top">Valuta</td>
+      <td><select name="Valuta" id="Valuta" class="easyui-validatebox" style="width:200px">
+          <option value=""></option>
+          <?php
+            $run = $pdo->query('SELECT * FROM valuta ORDER BY KdVal');
+            $rs = $run->fetchAll(PDO::FETCH_ASSOC);
+            foreach($rs as $r)
+                echo "<option value=\"".$r['KdVal']."\">".$r['KdVal']." - ".$r['UrVal']."</option>";
+        ?>
+          </select></td>
     </tr>
     <?php if ($TpPrshn=='p'){ ?>
     <tr>

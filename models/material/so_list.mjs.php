@@ -3,7 +3,7 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
 		fitColumns:"true",
 		rownumbers:"true",
@@ -29,15 +29,17 @@ function setdg(){
 		onExpandRow: function(index,row){  
 			$('#ddv-'+index).datagrid({  
 				url:'<?php echo $basedir; ?>models/material/so_grid.php?req=list&so_id='+row.so_id,  
-				fitColumns:true,  
-				singleSelect:true,  
-				rownumbers:true,  
-				loadMsg:'',  
 				height:'auto',  
+				singleSelect:true,
+				mode:'remote',  
+				rownumbers:true,
+				fitColumns:true,
+				pagination:true,
+				pageList:[25,50,75,100], 				
 				columns:[[  
 					{field:'KdBarang2',title:'Part Code',width:80},  
-					{field:'PartNo',title:'Part No.',width:80}, 
-					{field:'NmBarang2',title:'Part Name',width:100}, 
+					{field:'NmBarang2',title:'Part No.',width:80}, 
+					{field:'Ket',title:'Part Name',width:100}, 
 					{field:'Sat2',title:'Unit',width:80},   
 					{field:'qty',title:'Quantity',width:100,align:'right'},  
 					{field:'price',title:'Price',width:100,align:'right'},

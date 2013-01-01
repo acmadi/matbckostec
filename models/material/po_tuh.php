@@ -30,6 +30,7 @@ $nolist=explode("`", $_REQUEST['nolist']);
 $KdBarang2=explode("`", $_REQUEST['KdBarang2']);
 $qty=explode("`", $_REQUEST['qty']);
 $price=explode("`", $_REQUEST['price']);
+$remark_det=explode("`", $_REQUEST['remark_det']);
 $tot_qty=0;
 $tot_amount=0;
 $jmlnodet=sizeof($nolist)-1;
@@ -69,9 +70,9 @@ try {
 		//TAMBAH DETAIL		
 		for ($i=0; $i<$jmlnodet; $i++){			
 		$sql[] = "INSERT INTO pur_podet (
-				  po_id,child_no,mat_id,qty,price
+				  po_id,child_no,mat_id,qty,price,remark_det
 				  ) VALUES (
-				  '$po_id','$nolist[$i]','$KdBarang2[$i]','$qty[$i]','$price[$i]'
+				  '$po_id','$nolist[$i]','$KdBarang2[$i]','$qty[$i]','$price[$i]','$remark_det[$i]'
 				  )";	
 		}//AKHIR TAMBAH DETAIL
 		
@@ -103,9 +104,9 @@ try {
 		$jmlnodet=sizeof($nolist)-1;		
 		for ($i=0; $i<$jmlnodet; $i++){			
 		$sql[] = "INSERT INTO pur_podet (
-				  po_id,child_no,mat_id,qty,price
+				  po_id,child_no,mat_id,qty,price,remark_det
 				  ) VALUES (
-				  '$po_id','$nolist[$i]','$KdBarang2[$i]','$qty[$i]','$price[$i]'
+				  '$po_id','$nolist[$i]','$KdBarang2[$i]','$qty[$i]','$price[$i]','$remark_det[$i]'
 				  )";	
 		}//AKHIR UBAH DETAIL
 		

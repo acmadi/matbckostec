@@ -35,7 +35,7 @@ $('#qty').numberbox({
 	decimalSeparator:'.',
 });
 
-$('#wo_no').combogrid({  
+<? /*$('#wo_no').combogrid({  
 	panelWidth:500,  	
 	url: '<?php echo $basedir; ?>models/material/matout_grid.php?req=wo',  
 	idField:'wo_no',  
@@ -48,7 +48,7 @@ $('#wo_no').combogrid({
 		{field:'expplan_date',title:'Export Plan Date',width:50}
 	]],
 	onClickRow:function(index,row){insert_ref(row)}  
-}); 
+}); */ ?>
 	
 setdg();
 setComboGrid();
@@ -195,6 +195,7 @@ $('#tl2Ubh2').click(function(){
 			row: { 
 				KdBarang2: $('#KdBarang2').combogrid('getValue'),
 				NmBarang2: $('#NmBarang2').val(),	
+				twhmp: $('#twhmp').val(),
 				Sat2: $('#Sat2').val(),
 				qty: nformat2($('#qty').numberbox('getValue'),2)
 				}
@@ -207,6 +208,7 @@ $('#tl2Sim').click(function(){
 	$('#dg').datagrid('appendRow',{		
 		KdBarang2: $('#KdBarang2').combogrid('getValue'),
 		NmBarang2: $('#NmBarang2').val(),
+		twhmp: $('#twhmp').val(),
 		Sat2: $('#Sat2').val(),
 		qty: nformat2($('#qty').numberbox('getValue'),2)
 	});

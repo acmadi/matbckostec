@@ -97,11 +97,7 @@ require_once "wip_frm.cjs.php";
       <td width="319"><input name="KdBarang3" type="hidden" id="KdBarang3" class="easyui-validatebox" value=""><input id="KdBarang2" name="KdBarang2" type="text" style="width:100px"></td>
     </tr>
     <tr>
-      <td>Part No.</td>
-      <td><input name="PartNo" type="text" id="PartNo" style="width:150px" readonly></td>
-    </tr>
-    <tr>
-      <td>Part Name</td>
+      <td>Part No</td>
       <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
     </tr>
     <tr>
@@ -118,9 +114,18 @@ require_once "wip_frm.cjs.php";
           </select>
       </td>
     </tr>
-    <tr>
+	<tr>
       <td>Quantity</td>
       <td><input name="qty" type="text" id="qty" value="" style="width:50px"></td>
+    </tr>
+	<tr>
+      <td>Remark</td>
+      <td>
+	  <select name="remark" id="remark" style="width:50px">
+	    <option value=""></option>
+		<option value="OK">OK</option>
+		<option value="NG">NG</option>
+	  </select></td>
     </tr>
     </table>
     <input type="submit" id="btnSubmit2" name="btnSubmit2" style="display:none">

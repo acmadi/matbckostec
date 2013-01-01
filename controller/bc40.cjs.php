@@ -1,22 +1,5 @@
 <script type="text/javascript">
 $(function(){
-
-$('#ref').hide();
-$('#ref_id').combogrid({  
-	panelWidth:500,  	
-	idField:'matin_id',  
-	textField:'matin_no',  
-	url: '<?php echo $basedir ?>models/bc40/bc40_grid.php?req=inhdr',  
-	fitColumns:true,  
-	columns:[[  
-		{field:'matin_id',title:'Incoming ID',width:50,hidden:true},
-		{field:'matin_no',title:'Incoming No.',width:50},
-		{field:'matin_date',title:'Incoming Date',width:50},
-		{field:'matin_name',title:'Incoming Type',width:50},
-		{field:'supplier',title:'Supplier',width:80},
-	]],
-	onClickRow:function(index,row){setdg2Url(row)}  
-});
 	
 $('#w').window({ 
 	title:"FORM <?php echo strtoupper($NmMenu) ?>", 
@@ -47,8 +30,7 @@ $('#btnTbh').click(function(){
 	enbtnBtl();	
 	enInput();
 	setdg();
-	setdg2();	
-	$('#ref').show();
+	setdg2();		
 	$('#KdBarang').attr("disabled",true);
 });
  
@@ -58,7 +40,7 @@ $('#btnUbh').click(function(){
 	
 	enInput();	
 	enTgl();
-	$('#ref').show();
+	$('#ref_id').combogrid({disabled:false});
 	$('#KdBarang').attr("disabled",true);
 });
   
@@ -119,6 +101,13 @@ $('#btnCri').click(function(){
 	setdgCari();
 });
 
+$('#NmTuj').change(function(){	
+	$('#ref_id').combogrid({
+		url: '<?php echo $basedir ?>models/bc40/bc40_grid.php?req=inhdr&NmTuj='+$('#NmTuj').val(),  
+		disabled:false
+	});	
+});
+
 $('#KdBarang').change(function(){
 	setUrBarang("KdBarang","UrBarang");
 });
@@ -127,7 +116,27 @@ $('.easyui-numberbox').css('text-align', 'right');
 $('#CAR').mask("999.999");
 $('#NoDaf').mask("999.999");
 dsInput();
+$('#dtdari').datebox({disabled:false});
+$('#dtsampai').datebox({disabled:false});
 
+$('#ref_id').combogrid({  
+	panelWidth:500,  	
+	width:150,
+	idField:'matin_id',  
+	textField:'matin_no',  
+	url: '<?php echo $basedir ?>models/bc40/bc40_grid.php?req=inhdr',  
+	mode:'remote',  
+	rownumbers:true,
+	fitColumns:true,
+	pagination:true,
+	pageList:[25,50,75,100],   
+	columns:[[  
+		{field:'matin_no',title:'Incoming No.',width:60},
+		{field:'matin_date',title:'Incoming Date',width:50},
+		{field:'supplier',title:'Supplier',width:50}
+	]],
+	onClickRow:function(index,row){setdg2Url(row)}  
+});
     
 });//Akhir Document Ready
 </script>

@@ -1,26 +1,10 @@
 <script type="text/javascript">
 $(function(){
 	
-$('#ref').hide();
-$('#ref_id').combogrid({  
-	panelWidth:500,  	
-	idField:'do_id',  
-	textField:'do_no',  
-	url: '<?php echo $basedir ?>models/bc30/bc30_grid.php?req=dohdr',  
-	fitColumns:true,  
-	columns:[[  
-		{field:'do_no',title:'DO No.',width:60},
-			{field:'do_date',title:'DO Date',width:50},
-			{field:'so_no',title:'PO Cust. No.',width:50},
-			{field:'cust',title:'Customer',width:50}
-	]],
-	onClickRow:function(index,row){setdg2Url(row)}  
-});
-
 $('#w').window({ 
 	title:"FORM <?php echo strtoupper($NmMenu) ?>", 
     width:770,
-	height:515,	
+	height:900,	
 	top:0,
 	left:0,
 	collapsible:false,
@@ -53,7 +37,6 @@ $('#btnTbh').click(function(){
 	setdg();
 	setdg2();
 	setdgPetiKemas();	
-	$('#ref').show();
 	$('#KdBarang').attr("disabled",true);	
 });
  
@@ -61,7 +44,7 @@ $('#btnUbh').click(function(){
 	enbtnSim();			
 	dsbtnHps();	
 	enInput();	
-	$('#ref').show();
+	$('#ref_id').combogrid({disabled:false});
 	$('#KdBarang').attr("disabled",true);
 });
   
@@ -127,9 +110,35 @@ $('#btnCri').click(function(){
 	setdgCari();
 });
 
+$('#NmTuj').change(function(){
+	$('#ref_id').combogrid({
+		url: '<?php echo $basedir ?>models/bc30/bc30_grid.php?req=outhdr&NmTuj='+$('#NmTuj').val(),  
+		disabled:false
+	});	
+});
+
 $('#KdBarang').change(function(){
 	setUrBarang();
 });
+
+	$('#ref_id').combogrid({  
+		panelWidth:500,
+		height:150,  	
+		idField:'matout_id',  
+		textField:'matout_no',  
+		url: '<?php echo $basedir ?>models/bc30/bc30_grid.php?req=outhdr',  
+		mode:'remote',  
+		rownumbers:true,
+		fitColumns:true,
+		pagination:true,
+		pageList:[25,50,75,100],     
+		columns:[[  
+			{field:'matout_no',title:'Outgoing No.',width:60},
+			{field:'matout_date',title:'Outgoing Date',width:50},
+			{field:'cust',title:'Customer',width:50}
+		]],
+		onClickRow:function(index,row){setdg2Url(row)}  
+	});
     
 });//Akhir Document Ready
 </script>

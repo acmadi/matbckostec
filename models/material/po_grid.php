@@ -18,25 +18,55 @@ if ($req=='menu'){
 		}
 	} 	  
 	$q .= "ORDER BY po_no, po_date ASC";
+		
+	$run=$pdo->query($q);	
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+	echo json_encode($rs);
+
 } else if ($req=='list') {	
 	$po_id = $_REQUEST["po_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,c.HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount,remark_det
 		  FROM pur_podet a 
 		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
-		  LEFT JOIN mat_group c ON c.matgroup_code=b.MatGroup
+		  LEFT JOIN mat_group c ON b.MatGroup=c.matgroup_code
 		  WHERE po_id='$po_id' 
 		  ORDER BY child_no ASC";
+	
+	$run=$pdo->query($q);	
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+	echo json_encode($rs);
+		  
 } else if ($req=='dgDet') {
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2
+	$key = $_REQUEST["q"];
+	
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 25;
+	$offset = ($page-1)*$rows;
+	$result = array();
+
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,Sat AS Sat2
 		  FROM mst_barang a 
 		  LEFT JOIN mst_jenisbarang b ON KdJnsBarang=TpBarang 
+		  LEFT JOIN mat_group c ON a.MatGroup=c.matgroup_code
 		  WHERE TpBarang NOT IN ('0','11')
-		  ORDER BY TpBarang, KdBarang ASC";		  
+		  ";		  
+	
+	if ($key != ''){
+		$q .= " AND (KdBarang LIKE '%$key%' OR NmBarang LIKE '%$key%') ";
+	}	 
+	 
+	$q .= "ORDER BY TpBarang, KdBarang ASC";
+	
+	$runtot=$pdo->query($q);
+	$rstot=$runtot->fetchAll(PDO::FETCH_ASSOC);
+
+	$q .= " LIMIT $offset,$rows";
+	$run=$pdo->query($q);
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+
+	$result["total"] = count($rstot);
+	$result["rows"] = $rs;
+
+	echo json_encode($result);		  
 }
-
-
-
-$run=$pdo->query($q);	
-$rs=$run->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($rs);
 ?>

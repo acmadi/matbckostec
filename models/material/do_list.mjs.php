@@ -3,14 +3,16 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
 		fitColumns:"true",
 		rownumbers:"true",
+		pagination:true,
+		pageList:[25,50,75,100],
 		columns:[[  
-			{field:'do_no',title:'DO No.',width:80},
-			{field:'do_date',title:'DO Date',width:80},
-			{field:'so_no',title:'PO Cust. No',width:80},
+			{field:'matout_no',title:'DO No.',width:80},
+			{field:'matout_date',title:'DO Date',width:80},
+			{field:'ref_no',title:'PO Cust. No',width:80},
 			{field:'cust',title:'Customer',width:80},
 			{field:'vehicle_no',title:'Vehicle No.',width:100},
 			{field:'driver',title:'Driver',width:80},
@@ -29,7 +31,7 @@ function setdg(){
 		},  
 		onExpandRow: function(index,row){  
 			$('#ddv-'+index).datagrid({  
-				url:'<?php echo $basedir; ?>models/material/do_grid.php?req=list&do_id='+row.do_id,  
+				url:'<?php echo $basedir; ?>models/material/do_grid.php?req=list&do_id='+row.matout_id,  
 				fitColumns:true,  
 				singleSelect:true,  
 				rownumbers:true,  
@@ -37,8 +39,7 @@ function setdg(){
 				height:'auto',  
 				columns:[[  
 					{field:'KdBarang2',title:'Part Code',width:80},  
-					{field:'PartNo',title:'Part No.',width:80}, 
-					{field:'NmBarang2',title:'Part Name',width:100}, 
+					{field:'NmBarang2',title:'Part No.',width:100}, 
 					{field:'Sat2',title:'Unit',width:80},   
 					{field:'qty',title:'Quantity',width:100,align:'right'},  
 					{field:'price',title:'Price',width:100,align:'right'},

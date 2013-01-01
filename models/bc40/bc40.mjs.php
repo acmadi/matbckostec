@@ -247,7 +247,7 @@ function setdg2(){
 }
 
 function setdg2Url(row){
-	$('#NmTuj').val(row.supplier);
+	$('#HrgSerah').numberbox('setValue',row.tot_amount);
 	$('#dg2').datagrid({  
 		url: '<?php echo $basedir ?>models/bc40/bc40_grid.php?req=indet&matin_id='+row.matin_id
 	});
@@ -467,7 +467,7 @@ function btnSim(){
 		NipPengusaha: $('#NipPengusaha').val(),
 		NmPejabat: $('#NmPejabat').val(),
 		NipPejabat: $('#NipPejabat').val(),
-		ref_id: $('#ref_id').combo('getValue'),
+		ref_id: $('#ref_id').combogrid('getValue'),
 		
 		NmTuj: $('#NmTuj').val(),
 		
@@ -514,7 +514,7 @@ function btnSim(){
 
 function cari(){					
 	$('#dgCari').datagrid({  
-		url:"<?php echo $basedir ?>models/bc40/bc40_grid.php?req=dgCari&dtdari="+$('#dtdari').combo('getValue')+"&dtsampai="+$('#dtsampai').combo('getValue')
+		url:"<?php echo $basedir ?>models/bc40/bc40_grid.php?req=dgCari&dtdari="+$('#dtdari').datebox('getValue')+"&dtsampai="+$('#dtsampai').datebox('getValue')
 	});
 	$('#dgCari').datagrid('load');
 }

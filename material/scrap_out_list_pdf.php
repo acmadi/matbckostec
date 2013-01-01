@@ -15,7 +15,7 @@ class MYPDF extends TCPDF {
 	//Page header
 	public function Header() {
 		// Logo
-		$image_file = K_PATH_IMAGES.'logo.png';
+		$image_file = K_PATH_IMAGES.'yanjin_logo.png';
 		$this->Image($image_file, 15, 5, 180, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		// Set font
 		$this->SetFont('helvetica', 'B', 20);
@@ -125,7 +125,7 @@ $pdf->AddPage();
 $pilcari = $_REQUEST["pilcari"];
 $txtcari = $_REQUEST["txtcari"];
 $q = "SELECT *,DATE_FORMAT(matout_date,'%d/%m/%Y') AS matout_date, a.notes AS notes
-	  FROM mat_outhdr a WHERE matout_type='3' ";
+	  FROM mat_outhdr a WHERE mat_type='12' ";
 if ($txtcari != ""){		  
 	if ($pilcari == "matout_date"){		  
 		$q .= "AND $pilcari LIKE '%".dmys2ymd($txtcari)."%' ";	  
@@ -143,9 +143,11 @@ $html = '<h2 align="center">'.$NmMenu.'</h2>'.
 		<thead>
 		<tr>
 		  <th align="center" width="25"><b>No.</b></th>
-		  <th width="80"><b>MOB No.</b></th>
-		  <th width="80"><b>MOB Date</b></th>
-		  <th width="80"><b>Ref. No.</b></th>
+		  <th width="80"><b>Scrap Out No.</b></th>
+		  <th width="80"><b>Scrap Out Date</b></th>
+		  <th width="180"><b>Customer</b></th>
+		  <th width="80"><b>Vehicle No.</b></th>
+		  <th width="80"><b>Driver</b></th>
 		  <th><b>Notes</b></th>
 		</tr>
 		</thead>
@@ -156,7 +158,9 @@ $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
 		 '<td width="80">'.$r['matout_no'].'</td>'.
 		 '<td width="80">'.$r['matout_date'].'</td>'.
-		 '<td width="80">'.$r['ref_no'].'</td>'.
+		 '<td width="180">'.$r['cust'].'</td>'.
+		 '<td width="80">'.$r['vehicle_no'].'</td>'.
+		 '<td width="80">'.$r['driver'].'</td>'.
 		 '<td>'.$r['notes'].'</td>'.
 		 '</tr>';
 $no+=1;	

@@ -7,7 +7,7 @@ require_once "function.php";
 
 //VARIABEL YANG DI POST
 $KdBarang0=$_REQUEST['KdBarang0'];
-$PartNo=$_REQUEST['PartNo'];
+//$PartNo=$_REQUEST['PartNo'];
 $KdBarang=$_REQUEST['KdBarang'];
 $NmBarang=$_REQUEST['NmBarang'];
 $TpBarang=$_REQUEST['TpBarang'];
@@ -36,10 +36,10 @@ try {
 		$rstuj = $rec->fetchAll(PDO::FETCH_ASSOC);
 		if (count($rstuj) == 0){
 			$sql[]="INSERT INTO mst_barang (	
-					  KdBarang,PartNo,NmBarang,TpBarang,
+					  KdBarang,NmBarang,TpBarang,
 					  HsNo,Sat,Treatment,Ket,cust
 					) VALUES (
-					  '$KdBarang','$PartNo','$NmBarang','$TpBarang',
+					  '$KdBarang','$NmBarang','$TpBarang',
 					  '$HsNo','$Sat',
 					  '$Treatment','$Ket','$cust'
 					)";					
@@ -54,7 +54,7 @@ try {
 	} else if ($aksi=='u'){
 		//UBAH
 		$sql[]="UPDATE mst_barang SET 
-				KdBarang='$KdBarang',PartNo='$PartNo',
+				KdBarang='$KdBarang',
 				NmBarang='$NmBarang',TpBarang='$TpBarang',
 				HsNo='$HsNo',Sat='$Sat',
 				Treatment='$Treatment',Ket='$Ket',

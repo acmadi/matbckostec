@@ -12,11 +12,12 @@ function setdg(){
 		columns:[[  
 			{field:'KdBarang2',title:'Mat. Code',width:80},
 			{field:'matgroup_name',title:'Mat. Group',width:150},
-			{field:'twhmp',title:'Size',width:150},
+			{field:'twhmp',title:'Size',width:80},
 			{field:'Sat2',title:'Unit',width:80},
 			{field:'qty',title:'Qty.',width:100,align:'right'},
 			{field:'price',title:'Price',width:100,align:'right'},
-			{field:'amount',title:'Amount',width:100,align:'right'}
+			{field:'amount',title:'Amount',width:100,align:'right'},
+			{field:'remark_det',title:'Remark',width:100,align:'right'}
 		]],
 		url: '<?php echo $basedir; ?>models/material/po_grid.php?req=list&po_id='+po_id
 	});
@@ -71,7 +72,8 @@ function insert_menu(row){
 }
 
 function insert_det(row){
-	$('#NmBarang2').val(row.NmBarang2);
+	$('#matgroup_name').val(row.matgroup_name);
+	$('#twhmp').val(row.twhmp);
 	$('#Sat2').val(row.Sat2);
 }
 

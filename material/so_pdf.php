@@ -131,7 +131,7 @@ $q .= "ORDER BY so_no, so_date ASC";
 $runh=$pdo->query($q);	
 $rsh=$runh->fetchAll(PDO::FETCH_ASSOC);
 
-$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, PartNo, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,Ket,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
 	  FROM mkt_sorderdet a 
 	  LEFT JOIN mst_barang b ON KdBarang = fg_id 
 	  WHERE so_id='$so_id' 
@@ -185,8 +185,8 @@ foreach ($rs as $r){
 $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
 		 '<td width="80">'.$r['KdBarang2'].'</td>'.
-		 '<td width="80">'.$r['PartNo'].'</td>'.
-		 '<td width="150">'.$r['NmBarang2'].'</td>'.
+		 '<td width="80">'.$r['NmBarang2'].'</td>'.
+		 '<td width="150">'.$r['Ket'].'</td>'.
 		 '<td width="30">'.$r['Sat2'].'</td>'.
 		 '<td align="right">'.$r['qty'].'</td>'.
 		 '<td align="right">'.$r['price'].'</td>'.

@@ -3,14 +3,16 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
 		fitColumns:false,
 		rownumbers:"true",
+		pagination:true,
+		pageList:[25,50,75,100],
 		frozenColumns:[[  
 			{field:'KdBarang',title:'Mat. Code',width:80,rowspan:2},  
-			//{field:'PartNo',title:'Part No.',width:80,rowspan:2}, 
-			{field:'NmBarang',title:'Desc.',width:100,rowspan:2},   
+			{field:'matgroup_name',title:'Mat. Group',width:100,rowspan:2},   
+			{field:'twhmp',title:'Size',width:100,rowspan:2},   
 			{field:'Sat',title:'Unit',width:50,rowspan:2}, 
 		]],
 		columns:[[  					

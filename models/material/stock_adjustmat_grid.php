@@ -8,6 +8,12 @@ $req = $_REQUEST["req"];
 if ($req=='menu') {	
 	$pilcari = $_REQUEST["pilcari"];
 	$txtcari = $_REQUEST["txtcari"];
+	
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 25;
+	$offset = ($page-1)*$rows;
+	$result = array();
+	
 	$q = "SELECT *,DATE_FORMAT(opname_date,'%d/%m/%Y') AS opname_date
 		  FROM mat_opnamehdr a
 		  LEFT JOIN mat_warehouse b ON b.wh_id=a.wh_id 
@@ -20,6 +26,19 @@ if ($req=='menu') {
 		}
 	}
 	$q .= "ORDER BY opname_date ASC";
+	
+	$runtot=$pdo->query($q);
+	$rstot=$runtot->fetchAll(PDO::FETCH_ASSOC);
+
+	$q .= " LIMIT $offset,$rows";
+	$run=$pdo->query($q);
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+
+	$result["total"] = count($rstot);
+	$result["rows"] = $rs;
+
+	echo json_encode($result);
+	
 } else if ($req=='list') {	
 	$bln = $_REQUEST["bln"];
 	$thn = $_REQUEST["thn"];
@@ -27,19 +46,61 @@ if ($req=='menu') {
 	$opname_date1=$thn."-".$bln."-01";
 	$opname_date2=$thn."-".$bln."-".GetLastDayofMonth($thn, $bln);
 	
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, PartNo, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty, FORMAT(qty_bal, 2) AS qty_bal
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 25;
+	$offset = ($page-1)*$rows;
+	$result = array();
+	
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty, FORMAT(qty_bal, 2) AS qty_bal
 		  FROM mat_opnamedet a 
 		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
 		  LEFT JOIN mat_opnamehdr c ON c.opname_id=a.opname_id
 		  WHERE c.mat_type NOT IN ('0','11') AND c.status='1' AND c.wh_id = '".$wh_id."' AND opname_date BETWEEN '$opname_date1' AND '$opname_date2' 
 		  ORDER BY child_no ASC";
+		  
+	$runtot=$pdo->query($q);
+	$rstot=$runtot->fetchAll(PDO::FETCH_ASSOC);
+
+	$q .= " LIMIT $offset,$rows";
+	$run=$pdo->query($q);
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+
+	$result["total"] = count($rstot);
+	$result["rows"] = $rs;
+
+	echo json_encode($result);
+		  
+} else if ($req=='list2') {	
+	$bln = $_REQUEST["bln"];
+	$thn = $_REQUEST["thn"];
+	$wh_id = $_REQUEST["wh_id"];
+	$opname_date1=$thn."-".$bln."-01";
+	$opname_date2=$thn."-".$bln."-".GetLastDayofMonth($thn, $bln);
+	
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty, FORMAT(qty_bal, 2) AS qty_bal
+		  FROM mat_opnamedet a 
+		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
+		  LEFT JOIN mat_opnamehdr c ON c.opname_id=a.opname_id
+		  WHERE c.mat_type NOT IN ('0','11') AND c.status='1' AND c.wh_id = '".$wh_id."' AND opname_date BETWEEN '$opname_date1' AND '$opname_date2' 
+		  ORDER BY child_no ASC";
+
+	$run=$pdo->query($q);
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+
+	echo json_encode($rs);
+		  
 } else if ($req=='listrpt') {	
 	$opname_id = $_REQUEST["opname_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, PartNo, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty, FORMAT(qty_bal, 2) AS qty_bal, FORMAT(qty_diff, 2) AS qty_diff
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty, FORMAT(qty_bal, 2) AS qty_bal, FORMAT(qty_diff, 2) AS qty_diff
 		  FROM mat_opnamedet a 
 		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
 		  WHERE opname_id='$opname_id' 
 		  ORDER BY child_no ASC";		  
+		
+	$run=$pdo->query($q);	
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+	echo json_encode($rs);
+	  
 } else if ($req=='load') {
 	$bln = $_REQUEST["bln"];
 	$thn = $_REQUEST["thn"];
@@ -47,7 +108,7 @@ if ($req=='menu') {
 	$opname_date1=$thn."-".$bln."-01";
 	$opname_date2=$thn."-".$bln."-".GetLastDayofMonth($thn, $bln);
 	
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, PartNo, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,
 		  (
 		  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$opname_date1."' AND s.mat_id = a.mat_id AND type = 'B' AND wh_id = '".$wh_id."')
 		  +
@@ -60,11 +121,11 @@ if ($req=='menu') {
 		  LEFT JOIN mat_opnamehdr c ON c.opname_id=a.opname_id
 		  WHERE c.mat_type NOT IN ('0','11') AND c.wh_id = '".$wh_id."' AND opname_date BETWEEN '$opname_date1' AND '$opname_date2' 
 		  ORDER BY child_no ASC";
+	
+	$run=$pdo->query($q);	
+	$rs=$run->fetchAll(PDO::FETCH_ASSOC);
+	echo json_encode($rs);	  
+	
 }
 
-
-
-$run=$pdo->query($q);	
-$rs=$run->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($rs);
 ?>

@@ -124,19 +124,18 @@ $pdf->AddPage();
 //Data loading
 $do_id = $_REQUEST["do_id"];
 
-$q = "SELECT *,DATE_FORMAT(do_date,'%d/%m/%Y') AS do_date, a.notes AS notes
-	  FROM mkt_dohdr a 
-	  LEFT JOIN mkt_sorderhdr b ON b.so_id=a.so_id ";
-$q .= "WHERE do_id LIKE '$do_id' ";	  
-$q .= "ORDER BY do_no, do_date ASC";
+$q = "SELECT *,DATE_FORMAT(matout_date,'%d/%m/%Y') AS matout_date, a.notes AS notes
+	  FROM mat_outhdr a  ";
+$q .= "WHERE matout_id LIKE '$do_id' ";	  
+$q .= "ORDER BY matout_no, matout_date ASC";
 $runh=$pdo->query($q);	
 $rsh=$runh->fetchAll(PDO::FETCH_ASSOC);
 
 
-$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,PartNo,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
-	  FROM mkt_dodet a 
-	  LEFT JOIN mst_barang b ON KdBarang = fg_id 
-	  WHERE do_id='$do_id' 
+$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+	  FROM mat_outdet a 
+	  LEFT JOIN mst_barang b ON KdBarang = mat_id 
+	  WHERE matout_id='$do_id' 
 	  ORDER BY child_no ASC";
 $run=$pdo->query($q);	
 $rs=$run->fetchAll(PDO::FETCH_ASSOC);
@@ -147,24 +146,24 @@ $html = '<h2 align="center">'.$NmMenu.'</h2>'.
 		<tr>
 		  <td width="60"><b>DO No.</b></td>
 		  <td width="10"><b>:</b></td>
-		  <td width="150"><b>'.$rsh[0]['do_no'].'</b></td>
+		  <td width="100"><b>'.$rsh[0]['matout_no'].'</b></td>
 		  <td width="60"><b>DO Date</b></td>
 		  <td width="10"><b>:</b></td>
-		  <td width="80"><b>'.$rsh[0]['do_date'].'</b></td>
-		  <td width="60"><b>PO Cust. No</b></td>
+		  <td width="80"><b>'.$rsh[0]['matout_date'].'</b></td>
+		  <td width="60"><b>Customer</b></td>
 		  <td width="10"><b>:</b></td>
-		  <td width="100"><b>'.$rsh[0]['so_no'].'</b></td>
+		  <td width="150"><b>'.$rsh[0]['cust'].'</b></td>
 		</tr>
 		<tr>
 		  <td width="60"><b>Vehicle No.</b></td>
 		  <td width="10"><b>:</b></td>
-		  <td width="150"><b>'.$rsh[0]['vehicle_no'].'</b></td>
+		  <td width="100"><b>'.$rsh[0]['vehicle_no'].'</b></td>
 		  <td width="60"><b>Driver</b></td>
 		  <td width="10"><b>:</b></td>
 		  <td width="80"><b>'.$rsh[0]['driver'].'</b></td>
-		  <td width="60"><b></b></td>
-		  <td width="10"><b></b></td>
-		  <td width="100"><b></b></td>
+		  <td width="60"><b>PO Cust. No</b></td>
+		  <td width="10"><b>:</b></td>
+		  <td width="150"><b>'.$rsh[0]['ref_no'].'</b></td>
 		</tr>
 		<tr><td colspan="3"></td></tr>
 		</table>'.
@@ -173,8 +172,7 @@ $html = '<h2 align="center">'.$NmMenu.'</h2>'.
 		<tr>
 		  <th align="center" width="25"><b>No.</b></th>
 		  <th width="80"><b>Part Code</b></th>
-		  <th width="80"><b>Part No.</b></th>
-		  <th width="150"><b>Part Name</b></th>
+		  <th width="150"><b>Part No</b></th>
 		  <th width="30"><b>Unit</b></th>
 		  <th align="right"><b>Qty.</b></th>
 		  <th align="right"><b>Price</b></th>
@@ -187,7 +185,6 @@ foreach ($rs as $r){
 $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
 		 '<td width="80">'.$r['KdBarang2'].'</td>'.
-		 '<td width="80">'.$r['PartNo'].'</td>'.
 		 '<td width="150">'.$r['NmBarang2'].'</td>'.
 		 '<td width="30">'.$r['Sat2'].'</td>'.
 		 '<td align="right">'.$r['qty'].'</td>'.

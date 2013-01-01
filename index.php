@@ -88,7 +88,7 @@ color:#003;
 <table id="mainpage" cellpadding="0" cellspacing="0">
 <tr class="header" height="10">
   <th class="welcome"><a class="easyui-linkbutton" plain="true"><?php echo strtoupper($nama_user) ?></a></th>
-  <th><a class="easyui-linkbutton" plain="true">MATERIAL CONTROL & BEA CUKAI  SYSTEM <?php echo strtoupper($_SESSION['c_name']) ?></a></th>
+  <th><a class="easyui-linkbutton" plain="true">MRP & BEA CUKAI  SYSTEM <?php echo strtoupper($_SESSION['c_name']) ?></a></th>
   <th align="right" style="width:150px; padding-right:10px;">
   <a class="easyui-linkbutton" plain="true">
   <?php echo date('d/m/Y') ?>&nbsp;
@@ -127,8 +127,8 @@ jam();
 </tr>
 <tr height="10" class="footer">
   <th align="center" class="welcome"><a class="easyui-linkbutton" plain="true">Version 3.0</a></th>
-  <th align="center"><a class="easyui-linkbutton" plain="true"> suported by webcikarang programming & kikinsoft.com </a> </th>
-  <th align="right" style="width:150px; padding-right:10px;"><a class="easyui-linkbutton" plain="true">&copy; 2012</a></th>
+  <th align="center"><a class="easyui-linkbutton" plain="true"> &copy; WEBCIKARANG.COM </a> </th>
+  <th align="right" style="width:150px; padding-right:10px;"><a class="easyui-linkbutton" plain="true">2012</a></th>
 </tr>
 </table>
 </body>

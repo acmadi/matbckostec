@@ -61,6 +61,8 @@ require_once "initial_mac_frm.cjs.php";
 <div id="w" style="padding:10px">      
 <form id="fm" method="post" onSubmit="return false">
 	<input type="hidden" id="aksi" name="aksi">
+    <input type="hidden" id="wh_id0" name="wh_id0" value="5">
+    <input type="hidden" id="wh_id" name="wh_id" value="5">
     <div class="hdr">
       <span class="kolom1">Warehouse </span><span class="kolom2"><input type="hidden" id="wh_id0" name="wh_id0">
       <select name="wh_id" id="wh_id" style="width:150px">
@@ -117,7 +119,7 @@ require_once "initial_mac_frm.cjs.php";
       <td width="319"><input name="KdBarang3" type="hidden" id="KdBarang3" class="easyui-validatebox" value=""><input id="KdBarang2" name="KdBarang2" type="text" style="width:100px"></td>
     </tr>
     <tr>
-      <td>Material Name</td>
+      <td>Desc.</td>
       <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
     </tr>
     <tr>

@@ -7,6 +7,13 @@ $('#qty').numberbox({
 	groupSeparator:',',
 	decimalSeparator:'.',
 });
+
+$('#weight').numberbox({  
+    min:0, 
+	precision:2, 
+	groupSeparator:',',
+	decimalSeparator:'.',
+});
 	
 setdg();
 dsInput();
@@ -39,11 +46,13 @@ $('#KdBarang2').combogrid({
 	idField:'KdBarang2',  
 	textField:'KdBarang2',  
 	mode:'remote',  
-	fitColumns:true,  
+	rownumbers:true,
+	fitColumns:true,
+	pagination:true,
+	pageList:[25,50,75,100],  
 	columns:[[  
 		{field:'KdBarang2',title:'Part Code',width:60},
-		{field:'PartNo',title:'Part No.',width:50},
-		{field:'NmBarang2',title:'Part Name',width:50},
+		{field:'NmBarang2',title:'Part No',width:50},
 		{field:'Sat2',title:'Unit',width:50}
 	]],
 	onSelect:function(index,row){insert_det(row)}  
@@ -115,12 +124,16 @@ $('#tl1Sim').click(function(){
 		//FORM LIST BARANG
 		nolist_val="";	
 		KdBarang2_val="";
+		weight_val="";
 		qty_val="";
+		remark_val="";
 		j=1;		
 		for(var i=0; i<rows.length; i++){
 			nolist_val += j+i + "`";		
 			KdBarang2_val += rows[i].KdBarang2 + "`";
+			weight_val += rows[i].weight.replace(",","") + "`";
 			qty_val += rows[i].qty.replace(",","") + "`";
+			remark_val += rows[i].remark.replace(",","") + "`";
 		}	 	
 		//AKHIR FORM LIST BARANG
 				
@@ -133,7 +146,7 @@ $('#tl1Sim').click(function(){
 		
 		//FORM LIST DATA BARANG	
 		nolist:nolist_val,KdBarang2:KdBarang2_val,
-		qty:qty_val
+		weight:weight_val,qty:qty_val,remark:remark_val
 		},
 		function(result){
 			var result = eval('('+result+')');
@@ -230,11 +243,12 @@ $('#tl2Ubh2').click(function(){
 		$('#dg').datagrid('updateRow',{
 			index: index, 
 			row: { 
-				KdBarang2: $('#KdBarang2').combogrid('getValue'),
-				PartNo: $('#PartNo').val(),	
+				KdBarang2: $('#KdBarang2').combogrid('getValue'),	
 				NmBarang2: $('#NmBarang2').val(),	
 				Sat2: $('#Sat2').val(),
-				qty: nformat2($('#qty').numberbox('getValue'),2)
+				weight: nformat2($('#weight').numberbox('getValue'),2),
+				qty: nformat2($('#qty').numberbox('getValue'),2),
+				remark: $('#remark').val()
 				}
 		});
 	}
@@ -244,10 +258,11 @@ $('#tl2Sim').click(function(){
 	$('#dlg').dialog('close');
 	$('#dg').datagrid('appendRow',{		
 		KdBarang2: $('#KdBarang2').combogrid('getValue'),
-		PartNo: $('#PartNo').val(),	
 		NmBarang2: $('#NmBarang2').val(),	
 		Sat2: $('#Sat2').val(),
-		qty: nformat2($('#qty').numberbox('getValue'),2)
+		weight: nformat2($('#weight').numberbox('getValue'),2),
+		qty: nformat2($('#qty').numberbox('getValue'),2),		
+		remark: $('#remark').val()
 	});
 });
 

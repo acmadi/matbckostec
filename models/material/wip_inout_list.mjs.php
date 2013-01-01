@@ -9,10 +9,12 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,
 		toolbar:"#toolCari",
 		fitColumns:"true",
 		rownumbers:"true",
+		pagination:true,
+		pageList:[25,50,75,100],
 		columns:[[  
 			{field:'wh_name',title:'Warehouse',width:80},
 			{field:'date',title:'Date',width:80},
@@ -37,9 +39,9 @@ function setdg(){
 				loadMsg:'',  
 				height:'auto',  
 				columns:[[  
-					{field:'KdBarang2',title:'Mat Code',width:80},  
+					{field:'KdBarang2',title:'Part Code',width:80},  
 					//{field:'PartNo',title:'Part No.',width:80}, 
-					{field:'NmBarang2',title:'Desc.',width:100},   
+					{field:'NmBarang2',title:'Part No.',width:100},   
 					{field:'qty',title:'Qty.',width:100,align:'right'} 
 				]],  
 				onResize:function(){  

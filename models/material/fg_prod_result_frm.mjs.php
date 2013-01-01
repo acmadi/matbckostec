@@ -12,10 +12,11 @@ function setdg(){
 		rownumbers:"true",
 		columns:[[  
 			{field:'KdBarang2',title:'Part Code',width:80},
-			{field:'PartNo',title:'Part No.',width:150},
-			{field:'NmBarang2',title:'Part Name',width:150},
+			{field:'NmBarang2',title:'Part No',width:150},
 			{field:'Sat2',title:'Unit',width:80},
-			{field:'qty',title:'Qty.',width:100,align:'right'}
+			{field:'weight',title:'Weight',width:100,align:'right'},
+			{field:'qty',title:'Qty.',width:100,align:'right'},
+			{field:'remark',title:'Remark',width:100}
 		]],
 		url: '<?php echo $basedir; ?>models/material/fg_prod_result_grid.php?req=list&wh_id='+wh_id+'&date='+date,  
 		saveUrl: '',  

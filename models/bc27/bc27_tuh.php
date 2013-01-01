@@ -5,6 +5,7 @@ require_once "function.php";
 
 //VARIABEL YANG DI POST
 $DokKdBc=$_POST['DokKdBc'];
+$ket=$_POST['ket'];
 $fhidden=$_POST['fhidden'];
 $CAR=$_POST['CAR'];
 $KdTp=$_POST['KdTp'];
@@ -113,7 +114,7 @@ if ($fhidden != ""){
 			ref_id,NmTuj,
 			NoSegel,JnsSegel,CatBcTuj,
 			MerekKemas,KdKemas,JmlKemas,
-			VOL,BRUTO,NETTO,DokKdBc
+			VOL,BRUTO,NETTO,DokKdBc,ket
 			) VALUES (
 			'$CAR','$KdTp','$KdKpbcAsal','$KdKpbcTuj','$KdJnsTpbAsal',
 			'$KdJnsTpbTuj','$NoDaf','$TgDaf',
@@ -121,7 +122,7 @@ if ($fhidden != ""){
 			'$ref_id','$NmTuj',
 			'$NoSegel','$JnsSegel','$CatBcTuj',
 			'$MerekKemas','$KdKemas','$JmlKemas',
-			'$VOL','$BRUTO','$NETTO','$DokKdBc'	
+			'$VOL','$BRUTO','$NETTO','$DokKdBc','$ket'
 			)";
 	
 	$ketlog="tambah data $NmMenu $DokKdBc $CAR";			

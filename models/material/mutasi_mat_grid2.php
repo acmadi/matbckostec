@@ -8,7 +8,12 @@ $mat_type = $_REQUEST["mat_type"];
 $date1 = dmys2ymd($_REQUEST["date1"]);
 $date2 = dmys2ymd($_REQUEST["date2"]);
 
-$q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
+$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 25;
+$offset = ($page-1)*$rows;
+$result = array();
+
+$q = "SELECT KdBarang,NmBarang,matgroup_name,twhmp,Sat,
 	  (
 	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$date1."' AND s.mat_id = a.KdBarang AND type = 'B')
 	  +
@@ -56,11 +61,20 @@ $q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
 	  ) AS qty, 0 AS qty_end, FORMAT(0,2) AS qty_diff
 	   ";
 $q .= "FROM mst_barang a 
+	   LEFT JOIN mat_group b ON b.matgroup_code=a.MatGroup  
 	  WHERE a.TpBarang='$mat_type' 
 	  ORDER BY KdBarang ASC";
 
 
-$run=$pdo->query($q);	
+$runtot=$pdo->query($q);
+$rstot=$runtot->fetchAll(PDO::FETCH_ASSOC);
+
+$q .= " LIMIT $offset,$rows";
+$run=$pdo->query($q);
 $rs=$run->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($rs);
+
+$result["total"] = count($rstot);
+$result["rows"] = $rs;
+
+echo json_encode($result);
 ?>

@@ -1,5 +1,9 @@
 [{  
-    "text":"Bea Cukai",  
+    "text":"<a href=\"material/do_frm.php?NmMenu=Delivery Order Transaction\" target=\"content\">Delivery Order (DO) Transaction</a>"
+},{		
+	"text":"<a href=\"material/do_list.php?NmMenu=Delivery Order Report\" target=\"content\">Delivery Order (DO) Report</a>"
+},{	
+	"text":"Bea Cukai",  
     "state":"open", 
 	"children":[{  
     "id":1,  
@@ -29,7 +33,9 @@
 		},{  
 			"text":"<a href=\"beacukai/bc262/bc262_frm.php?NmMenu=BC 2.6.2 (PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI TPB DENGAN JAMINAN)\" target=\"content\">Form BC 2.6.2</a>"
 		},{  
-			"text":"<a href=\"beacukai/bc27/bc27_frm.php?NmMenu=BC 2.7 (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7</a>"
+			"text":"<a href=\"beacukai/bc27/bc27_frm.php?ket=in&NmMenu=BC 2.7 In(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7 In</a>"
+		},{
+			"text":"<a href=\"beacukai/bc27/bc27_frm.php?ket=out&NmMenu=BC 2.7 Out(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">Form BC 2.7 Out</a>"
 		},{  
 			"text":"<a href=\"beacukai/bc30/bc30_frm.php?NmMenu=BC 3.0 (PEMBERITAHUAN EKSPOR BARANG)\" target=\"content\">Form BC 3.0</a>"	
 		},{  
@@ -49,8 +55,10 @@
 		},{  
 			"text":"<a href=\"beacukai/bc262/bc262_pilap.php?NmMenu=LAPORAN BC 2.6.2 (PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI TPB DENGAN JAMINAN)\" target=\"content\">BC 2.6.2</a>"
 		},{  
-			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?NmMenu=LAPORAN BC 2.7 (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7</a>"
-		},{  
+			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?ket=in&NmMenu=LAPORAN BC 2.7 In(PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7 In</a>"
+		},{ 
+			"text":"<a href=\"beacukai/bc27/bc27_pilap.php?ket=out&NmMenu=LAPORAN BC 2.7 Out (PEMBERITAHUAN PENGELUARAN BARANG UNTUK DIANGKUT DARI TPB KE TPB LAINNYA)\" target=\"content\">BC 2.7 Out</a>"
+		},{
 			"text":"<a href=\"beacukai/bc30/bc30_pilap.php?NmMenu=LAPORAN BC 3.0 (PEMBERITAHUAN EKSPOR BARANG)\" target=\"content\">BC 3.0</a>"	
 		},{  
 			"text":"<a href=\"beacukai/bc40/bc40_pilap.php?NmMenu=LAPORAN BC 4.0 (PEMASUKAN BARANG ASAL TEMPAT LAIN DALAM DAERAH PABEAN KE TEMPAT PENIMBUNAN BERIKAT)\" target=\"content\">BC 4.0</a>"	

@@ -116,11 +116,11 @@ $mat_type = $_REQUEST["mat_type"];
 $date1 = dmys2ymd($_REQUEST["date1"]);
 $date2 = dmys2ymd($_REQUEST["date2"]);
 
-$q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
+$q = "SELECT KdBarang,NmBarang,Ket,Sat,
 	  (
 	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_stockcard s WHERE date < '".$date1."' AND s.mat_id = a.KdBarang AND type IN ('B','I'))	  
 	  -
-	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mkt_dodet da LEFT JOIN mkt_dohdr db ON db.do_id=da.do_id WHERE do_date < '".$date1."' AND da.fg_id = a.KdBarang)
+	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_outdet da LEFT JOIN mat_outhdr db ON db.matout_id=da.matout_id WHERE matout_date < '".$date1."' AND da.mat_id = a.KdBarang)
 	  +
 	  (SELECT IF(SUM(qty_in)>0,SUM(qty_in),0) FROM mat_opnamedet oa LEFT JOIN mat_opnamehdr ob ON ob.opname_id=oa.opname_id WHERE opname_date < '".$date1."' AND oa.mat_id = a.KdBarang)
 	  -
@@ -132,7 +132,7 @@ $q = "SELECT KdBarang, PartNo, NmBarang,HsNo,Sat,
 	  ) AS qty_in,
 	  
 	  (
-	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mkt_dodet da LEFT JOIN mkt_dohdr db ON db.do_id=da.do_id WHERE da.fg_id = a.KdBarang AND do_date BETWEEN '".$date1."' AND '".$date2."')
+	  (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_outdet da INNER JOIN mat_outhdr db ON db.matout_id=da.matout_id AND db.mat_type='0' WHERE da.mat_id = a.KdBarang AND matout_date BETWEEN '".$date1."' AND '".$date2."')
 	  ) AS qty_out,
 	  
 	  (
@@ -162,7 +162,7 @@ $html = '<h2>'.$NmMenu.'</h2>'.
 		  <th align="center" width="25"><b>No.</b></th>
 		  <th width="80"><b>Part Code</b></th>
 		  <th width="80"><b>Part No.</b></th>
-		  <th width="80"><b>Part Name</b></th>
+		  <th width="100"><b>Part Name</b></th>
 		  <th align="center" width="30"><b>Unit</b></th>
 		  <th align="right"><b>Previous Balance</b></th>
 		  <th align="right"><b>In to FG</b></th>
@@ -179,8 +179,8 @@ $qty_end=$r['qty_beg']+$r['qty_in']-$r['qty_out'];
 $html .= '<tr>'.
 	  	 '<td align="center" width="25">'.$no.'</td>'.
 		 '<td width="80">'.$r['KdBarang'].'</td>'.
-		 '<td width="80">'.$r['PartNo'].'</td>'.
 		 '<td width="80">'.$r['NmBarang'].'</td>'.
+		 '<td width="100">'.$r['Ket'].'</td>'.
 		 '<td align="center" width="30">'.$r['Sat'].'</td>'.
 		 '<td align="right">'.$r['qty_beg'].'</td>'.
 		 '<td align="right">'.$r['qty_in'].'</td>'.

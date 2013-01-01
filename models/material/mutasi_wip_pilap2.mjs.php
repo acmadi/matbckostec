@@ -3,14 +3,15 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
 		fitColumns:false,
 		rownumbers:"true",
+		pagination:true,
+		pageList:[25,50,75,100],
 		frozenColumns:[[  
-			{field:'KdBarang',title:'Part Code',width:80},  
-			{field:'PartNo',title:'Part No.',width:80}, 
-			{field:'NmBarang',title:'Part Name',width:100},   
+			{field:'KdBarang',title:'Part Code',width:80},
+			{field:'NmBarang',title:'Part No',width:100},   
 			{field:'Sat',title:'Unit',width:50}, 
 		]],
 		columns:[[  					
@@ -26,7 +27,7 @@ function setdg(){
 			}},
 			{field:'ket',title:'Remarks',width:80}
 		]],
-		url: '<?php echo $basedir; ?>models/material/mutasi_fg_grid2.php?mat_type=11&date1='+$("#date1").datebox('getValue')+'&date2='+$("#date2").datebox('getValue'),
+		url: '<?php echo $basedir; ?>models/material/mutasi_wip_grid2.php?mat_type=11&date1='+$("#date1").datebox('getValue')+'&date2='+$("#date2").datebox('getValue'),
 	});
 }
 

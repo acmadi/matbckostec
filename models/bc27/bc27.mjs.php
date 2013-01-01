@@ -264,18 +264,16 @@ function setdg2(){
 			{field:'CIF',title:'CIF',width:100,align:"right"},
 			{field:'HrgSerah',title:'Harga<br>Penyerahan',width:100,align:"right"}
 		]],
-			url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dg2&CAR='+CAR,  
-			saveUrl: '',  
-			updateUrl: '',  
-			destroyUrl: '',
+			url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dg2&CAR='+CAR, 
 			onAdd:function(index,row){rowIndex=index;setEditing(rowIndex);},			
 			onDblClickRow:function(index,row){rowIndex=index;setEditing(rowIndex);}		
 	});	
 }
 
 function setdg2Url(row){
-	$('#NmTuj').val(row.supplier);
-	if ($('#KdTp').val()=='6' || $('#KdTp').val()=='7' || $('#KdTp').val()=='8'){
+	$('#HrgSerah').numberbox('setValue',row.tot_amount);
+	$('#NETTO').numberbox('setValue',row.tot_qty);
+	if ($('#ket').val()=='in'){
 		$('#dg2').datagrid({  
 			url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=indet&matin_id='+row.matin_id
 		});
@@ -320,10 +318,7 @@ function setdgCari(){
 			}},
 			{field:'NmTuj',title:'Pemasok',width:100,editor:{type:'validatebox',options:{required:true}}}
 		]],
-		url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dgCari', 
-		saveUrl: '',  
-		updateUrl: '',  
-		destroyUrl: '',
+		url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dgCari&ket='+$('#ket').val(),
 		onClickRow:function(index,row){insert_bc(row)}
 		
 	});
@@ -493,6 +488,7 @@ function btnSim(){
 			
 		$.post("<?php echo $basedir ?>models/bc27/bc27_tuh.php", { 
 		DokKdBc: 6, 
+		ket: $('#ket').val(),
 		fhidden: $('#fhidden').val(),
 		CAR: $('#CAR').val().replace(".",""),
 		KdTp: $('#KdTp').val(),
@@ -560,7 +556,7 @@ function btnSim(){
 
 function cari(){					
 	$('#dgCari').datagrid({  
-		url:"<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dgCari&dtdari="+$('#dtdari').combo('getValue')+"&dtsampai="+$('#dtsampai').combo('getValue')
+		url:"<?php echo $basedir ?>models/bc27/bc27_grid.php?req=dgCari&dtdari="+$('#dtdari').datebox('getValue')+"&dtsampai="+$('#dtsampai').datebox('getValue')+"&ket="+$('#ket').val()
 	});
 	$('#dgCari').datagrid('load');
 }

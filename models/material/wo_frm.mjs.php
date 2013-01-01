@@ -11,8 +11,8 @@ function setdg(){
 		rownumbers:"true",
 		columns:[[  
 			{field:'KdBarang2',title:'Part Code',width:80},
-			{field:'PartNo',title:'Part No.',width:150},
-			{field:'NmBarang2',title:'Part Name',width:150},
+			{field:'NmBarang2',title:'Part No.',width:150},
+			{field:'Ket',title:'Part Name',width:150},
 			{field:'Sat2',title:'Unit',width:80},
 			{field:'qty',title:'Qty. Plan',width:100,align:'right'}
 		]],

@@ -84,10 +84,14 @@ $('#KdBarang2').combogrid({
 	idField:'KdBarang2',  
 	textField:'KdBarang2',  
 	mode:'remote',  
-	fitColumns:true,  
+	rownumbers:true,
+	fitColumns:true,
+	pagination:true,
+	pageList:[25,50,75,100],
 	columns:[[  
 		{field:'KdBarang2',title:'Mat. Code',width:60},
-		{field:'NmBarang2',title:'Desc.',width:50},
+		{field:'matgroup_name',title:'Mat. Group',width:50},
+		{field:'twhmp',title:'Size',width:50},
 		{field:'Sat2',title:'Unit',width:50}
 	]],
 	onSelect:function(index,row){insert_det(row)}  
@@ -168,12 +172,14 @@ $('#tl1Sim').click(function(){
 		KdBarang2_val="";
 		qty_val="";
 		price_val="";
+		remark_det_val="";
 		j=1;
 		for(var i=0; i<rows.length; i++){
 			nolist_val += j+i + "`";		
 			KdBarang2_val += rows[i].KdBarang2 + "`";
 			qty_val += rows[i].qty.replace(",","") + "`";
 			price_val += rows[i].price.replace(",","") + "`";
+			remark_det_val += rows[i].remark_det.replace(",","") + "`";
 		}	 	
 		//AKHIR FORM LIST BARANG
 				
@@ -199,7 +205,7 @@ $('#tl1Sim').click(function(){
 		
 		//FORM LIST DATA BARANG	
 		nolist:nolist_val,KdBarang2:KdBarang2_val,
-		qty:qty_val,price:price_val
+		qty:qty_val,price:price_val,remark_det:remark_det_val
 		},
 		function(result){
 			var result = eval('('+result+')');
@@ -296,11 +302,13 @@ $('#tl2Ubh2').click(function(){
 			index: index, 
 			row: { 
 				KdBarang2: $('#KdBarang2').combogrid('getValue'),
-				NmBarang2: $('#NmBarang2').val(),	
+				matgroup_name: $('#matgroup_name').val(),	
+				twhmp: $('#twhmp').val(),	
 				Sat2: $('#Sat2').val(),
 				qty: nformat2($('#qty').numberbox('getValue'),2),
 				price: nformat2($('#price').numberbox('getValue'),2),
-				amount: nformat2($('#amount').numberbox('getValue'),2)
+				amount: nformat2($('#amount').numberbox('getValue'),2),
+				remark_det: $('#remark_det').val()
 				}
 		});
 	}
@@ -310,11 +318,13 @@ $('#tl2Sim').click(function(){
 	$('#dlg').dialog('close');
 	$('#dg').datagrid('appendRow',{		
 		KdBarang2: $('#KdBarang2').combogrid('getValue'),
-		NmBarang2: $('#NmBarang2').val(),
+		matgroup_name: $('#matgroup_name').val(),	
+		twhmp: $('#twhmp').val(),	
 		Sat2: $('#Sat2').val(),
 		qty: nformat2($('#qty').numberbox('getValue'),2),
 		price: nformat2($('#price').numberbox('getValue'),2),
-		amount: nformat2($('#amount').numberbox('getValue'),2)
+		amount: nformat2($('#amount').numberbox('getValue'),2),
+		remark_det: $('#remark_det').val()
 	});
 });
 

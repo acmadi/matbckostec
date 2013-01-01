@@ -28,14 +28,7 @@ $('#tot_amount').numberbox({
 	decimalSeparator:'.',
 });*/
 
-$('#qty_so').numberbox({  
-    min:0, 
-	precision:2, 
-	groupSeparator:',',
-	decimalSeparator:'.'
-});
-
-$('#qty_bal').numberbox({  
+$('#weight').numberbox({  
     min:0, 
 	precision:2, 
 	groupSeparator:',',
@@ -56,7 +49,7 @@ $('#qty').numberbox({
 
 $('#price').numberbox({  
     min:0, 
-	precision:2, 
+	precision:4, 
 	groupSeparator:',',
 	decimalSeparator:'.',
 	onChange:function(newValue,oldValue){
@@ -68,28 +61,15 @@ $('#price').numberbox({
 
 $('#amount').numberbox({  
     min:0, 
-	precision:2, 
+	precision:4, 
 	groupSeparator:',',
 	decimalSeparator:'.',
 });
 
-$('#PartNo').combogrid({  
-	panelWidth:500,  	
-	url: '<?php echo $basedir; ?>models/material/do_grid.php?req=fg',  
-	idField:'PartNo',  
-	textField:'PartNo',  
-	mode:'remote',  
-	fitColumns:true,  
-	columns:[[  
-		{field:'KdBarang',title:'Part Code',width:50},
-		{field:'PartNo',title:'Part No.',width:50},
-		{field:'NmBarang',title:'Part Name',width:50},
-		{field:'Sat',title:'Unit',width:50}
-	]],
-	onClickRow:function(index,row){set_sono(row)}  
-}); 
+$('#cust').change(function(){
+	set_sono(this.value);
+});
 
-set_sono('');
 	
 setdg();
 dsInput();
@@ -138,7 +118,7 @@ $('#tl1Tbh').click(function(){
 	
 	enInput();
 	$('#do_date').datebox('enable');
-	$('#so_no').combogrid('enable');
+	setComboGrid();
 	$('#due_date').datebox('enable');
 	$('#Sat2').attr('disabled',true);
 });
@@ -225,44 +205,39 @@ $('#tl2Ubh').click(function(){
 });
 
 $('#tl2Ubh2').click(function(){
-	if ($('#qty').numberbox('getValue') > $('#qty_bal').numberbox('getValue')){
-		alert("Qty. DO can't higher than Qty. Balance");
-	} else {
-			$('#dlg').dialog('close');
-			var row = $('#dg').datagrid('getSelected');
-			if (row){
-				var index = $('#dg').datagrid('getRowIndex', row);
-				$('#dg').datagrid('updateRow',{
-					index: index, 
-					row: { 
-						KdBarang2: $('#KdBarang2').combogrid('getValue'),
-						PartNo: $('#PartNo').val(),	
-						NmBarang2: $('#NmBarang2').val(),	
-						Sat2: $('#Sat2').val(),
-						qty: nformat2($('#qty').numberbox('getValue'),2),
-						price: nformat2($('#price').numberbox('getValue'),2),
-						amount: nformat2($('#amount').numberbox('getValue'),2)
-						}
-				});
-			}
+	$('#dlg').dialog('close');
+	var row = $('#dg').datagrid('getSelected');
+	if (row){
+		var index = $('#dg').datagrid('getRowIndex', row);
+		$('#dg').datagrid('updateRow',{
+			index: index, 
+			row: { 
+				KdBarang2: $('#KdBarang2').combogrid('getValue'),
+				PartNo: $('#PartNo').val(),	
+				NmBarang2: $('#NmBarang2').val(),	
+				Sat2: $('#Sat2').val(),
+				weight: nformat2($('#weight').numberbox('getValue'),2),
+				qty: nformat2($('#qty').numberbox('getValue'),2),
+				price: formatNumber($('#price').numberbox('getValue'),4),
+				amount: formatNumber($('#amount').numberbox('getValue'),4)
+				}
+		});
 	}
 });
 
 $('#tl2Sim').click(function(){
-	if ($('#qty').numberbox('getValue') > $('#qty_bal').numberbox('getValue')){
-		alert("Qty. DO can't higher than Qty. Balance");
-	} else {
-		$('#dlg').dialog('close');
-		$('#dg').datagrid('appendRow',{		
-			KdBarang2: $('#KdBarang2').combogrid('getValue'),
-			PartNo: $('#PartNo').val(),	
-			NmBarang2: $('#NmBarang2').val(),	
-			Sat2: $('#Sat2').val(),
-			qty: nformat2($('#qty').numberbox('getValue'),2),
-			price: nformat2($('#price').numberbox('getValue'),2),
-			amount: nformat2($('#amount').numberbox('getValue'),2)
-		});
-	}
+	$('#dlg').dialog('close');
+	$('#dg').datagrid('appendRow',{		
+		KdBarang2: $('#KdBarang2').combogrid('getValue'),
+		PartNo: $('#PartNo').val(),	
+		NmBarang2: $('#NmBarang2').val(),	
+		Sat2: $('#Sat2').val(),
+		weight: nformat2($('#weight').numberbox('getValue'),2),
+		qty: nformat2($('#qty').numberbox('getValue'),2),
+		price: formatNumber($('#price').numberbox('getValue'),4),
+		amount: formatNumber($('#amount').numberbox('getValue'),4)
+	});
+
 });
 
 $('#tl2Hps').click(function(){

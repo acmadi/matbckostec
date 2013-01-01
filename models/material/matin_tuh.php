@@ -13,6 +13,7 @@ $matin_date=dmys2ymd($_REQUEST['matin_date']);
 $currency=$_REQUEST['currency'];
 
 $po_id=$_REQUEST['po_id'];
+$po_no=$_REQUEST['po_no'];
 $supplier=$_REQUEST['supplier'];
 $supl_do=$_REQUEST['supl_do'];
 $supl_inv=$_REQUEST['supl_inv'];
@@ -46,10 +47,10 @@ try {
 		//TAMBAH HEADER
 		$sql[] = "INSERT INTO mat_inchdr (
 				  matin_id,matin_type,matin_no,matin_date,currency,
-				  po_id,supplier,supl_do,supl_inv,KdJnsDok,notes				  
+				  po_id,po_no,supplier,supl_do,supl_inv,KdJnsDok,notes				  
 				  ) VALUES (
 				  '$matin_id','$matin_type','$matin_no','$matin_date','$currency',
-				  '$po_id','$supplier','$supl_do','$supl_inv','$KdJnsDok','$notes'
+				  '$po_id','$po_no','$supplier','$supl_do','$supl_inv','$KdJnsDok','$notes'
 				  )";	
 		//AKHIR TAMBAH HEADER
 		
@@ -74,10 +75,10 @@ try {
 		//UBAH HEADER
 		$sql[] = "INSERT INTO mat_inchdr (
 				  matin_id,matin_type,matin_no,matin_date,currency,
-				  po_id,supplier,supl_do,supl_inv,KdJnsDok,notes				  
+				  po_id,po_no,supplier,supl_do,supl_inv,KdJnsDok,notes				  
 				  ) VALUES (
 				  '$matin_id','$matin_type','$matin_no','$matin_date','$currency',
-				  '$po_id','$supplier','$supl_do','$supl_inv','$KdJnsDok','$notes'
+				  '$po_id','$po_no','$supplier','$supl_do','$supl_inv','$KdJnsDok','$notes'
 				  )";	
 		//AKHIR UBAH HEADER		
 		//UBAH DETAIL	

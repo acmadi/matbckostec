@@ -6,11 +6,11 @@ require_once "pdocon.php";
 $NmMenu=$_REQUEST["NmMenu"];
 $TpBarang=$_REQUEST["TpBarang"];
 
-$q="SELECT do_id FROM mkt_dohdr ORDER BY do_id DESC";
+$q="SELECT matout_id FROM mat_outhdr ORDER BY matout_id DESC";
 $run = $pdo->query($q);
 $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 if ($rs){
-	$newId=$rs[0]['do_id']+1;
+	$newId=$rs[0]['matout_id']+1;
 } else {
 	$newId="1";				
 }
@@ -76,20 +76,44 @@ require_once "do_frm.cjs.php";
       <span class="kolom4">
         <input type="text" id="do_date" name="do_date" class="easyui-datebox" required maxlength="10" tabindex="10" style="width:100px">
       </span>
-      <span class="kolom5">Part No.</span>
+      <span class="kolom5">Customer</span>
       <span class="kolom6">
-      <select name="PartNo" id="PartNo" style="width:150px"></select></span>
+      <select name="cust" id="cust" style="width:150px">
+        <option value=""></option>
+        <?php
+            $run = $pdo->query("SELECT NmPrshn FROM mst_perusahaan WHERE TpPrshn='c' ORDER BY NmPrshn");
+            $rs = $run->fetchAll(PDO::FETCH_ASSOC);
+            foreach($rs as $r)
+                echo "<option value=\"".$r['NmPrshn']."\">".$r['NmPrshn']."</option>";
+        ?>
+      </select></span>
     </div>        
     <div class="hdr">
       <span class="kolom1">Vehicle No.</span>
       <span class="kolom2"><input type="text" name="vehicle_no" id="vehicle_no" style="width:100px"></span>
       <span class="kolom3">Driver</span>
       <span class="kolom4"><input type="text" name="driver" id="driver" style="width:100px"></span>
-       <span class="kolom5">PO Cust. No. </span>
+      <span class="kolom5">PO Cust. No. </span>
       <span class="kolom6">
       <input type="hidden" id="so_id" name="so_id" style="width:100px">
-      <select name="so_no" id="so_no" style="width:150px"></select></span>
+      <input name="so_no" id="so_no" style="width:150px"></span>  
     </div>
+	<div class="hdr">
+      <span class="kolom1">
+        Jenis BC
+      </span>
+      <span class="kolom2">
+      <select name="KdJnsDok" id="KdJnsDok" style="width:80px">
+        <option value=""></option>
+        <?php
+            $run = $pdo->query("SELECT * FROM jenis_dok WHERE KdJnsDok IN ('3','4','6','7','9') ORDER BY KdJnsDok");
+            $rs = $run->fetchAll(PDO::FETCH_ASSOC);
+            foreach($rs as $r)
+                echo "<option value=\"".$r['KdJnsDok']."\">".$r['UrJnsDok']."</option>";
+        ?>
+      </select>
+      </span>
+	</div>  
     <!--
     <div class="hdr">
       <span class="kolom1">
@@ -120,7 +144,7 @@ require_once "do_frm.cjs.php";
     <a href="javascript:void(0)" id="tl2Hps" class="easyui-linkbutton" iconCls="icon-remove" plain="true" title="Hapus">Delete</a>  
 </div>        
 <div class="hdr" style="padding-top:10px">Notes: 
-  <textarea id="notes" name="notes" style="width:700px; height:70px;"></textarea></div>    
+  <textarea id="notes" name="notes" style="width:700px; height:40px;"></textarea></div>    
 <input type="submit" id="btnSubmit1" name="btnSubmit1" style="display:none">
 </form>     
 
@@ -132,11 +156,7 @@ require_once "do_frm.cjs.php";
       <td width="319"><input name="KdBarang3" type="hidden" id="KdBarang3" class="easyui-validatebox" value=""><input id="KdBarang2" name="KdBarang2" type="text" style="width:100px"></td>
     </tr>
     <tr>
-      <td>Part No.</td>
-      <td><input name="PartNo" type="text" id="PartNo" style="width:150px" readonly></td>
-    </tr>
-    <tr>
-      <td>Part Name</td>
+      <td>Part No</td>
       <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
     </tr>
     <tr>
@@ -153,16 +173,12 @@ require_once "do_frm.cjs.php";
           </select>
       </td>
     </tr>
-    <tr>
-      <td>Qty. PO Cust.</td>
-      <td><input name="qty_so" type="text" id="qty_so" value="" style="width:100px" readonly></td>
+	<tr>
+      <td>Weight</td>
+      <td><input name="weight" type="text" id="weight" value="0" style="width:100px"></td>
     </tr>
     <tr>
-      <td>Qty. Balance</td>
-      <td><input name="qty_bal" type="text" id="qty_bal" value="" style="width:100px" readonly></td>
-    </tr>
-    <tr>
-      <td>Qty. DO</td>
+      <td>Qty</td>
       <td><input name="qty" type="text" id="qty" value="" style="width:100px"></td>
     </tr>
     <tr>
@@ -187,9 +203,9 @@ require_once "do_frm.cjs.php";
 <div id="toolCari">  
     Search
     <select id="pilcari" name="pilcari">
-    	<option value="do_no">DO No.</option>
-        <option value="do_date">DO Date</option>
-        <option value="so_no">SO No.</option>
+    	<option value="matout_no">DO No.</option>
+        <option value="matout_date">DO Date</option>
+        <option value="ref_no">PO Cust. No.</option>
     </select> 
     <input type="text" id="txtcari" name="txtcari" style="width:100px">
     <a href="#" id="dtlCri" class="easyui-linkbutton" iconCls="icon-search"></a>

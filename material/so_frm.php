@@ -148,11 +148,11 @@ require_once "so_frm.cjs.php";
     </tr>
     <tr>
       <td>Part No.</td>
-      <td><input name="PartNo" type="text" id="PartNo" style="width:100px" readonly></td>
+      <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:100px" readonly></td>
     </tr>
     <tr>
       <td>Part Name</td>
-      <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
+      <td><input name="Ket" type="text" id="Ket" style="width:150px" readonly></td>
     </tr>
     <tr>
       <td>Unit</td>

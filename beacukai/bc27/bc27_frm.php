@@ -4,6 +4,9 @@ require_once "sessions.php";
 require_once "pdocon.php";
 
 $NmMenu=$_REQUEST["NmMenu"];
+$ket=$_REQUEST['ket'];
+
+$TpPrshn=($ket=='in')?'s':'c';
 
 $q="SELECT right(CAR,6)+1 as auto_no  FROM header WHERE DokKdBc='6' ORDER BY right(CAR,6) DESC LIMIT 1";
 $run = $pdo->query($q);
@@ -11,11 +14,12 @@ $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autono=($rs)?$rs[0]['auto_no']:1;
 $carno = str_pad($autono, 6, "0", STR_PAD_LEFT);
 
-$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='6' ORDER BY right(CAR,3) DESC LIMIT 1";
+/*$q="SELECT right(NoDaf,3)+1 as auto_nodaf FROM header WHERE DokKdBc='6' ORDER BY right(NoDaf,3) DESC LIMIT 1";
 $run = $pdo->query($q);
 $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 $autonodaf=($rs)?$rs[0]['auto_nodaf']:1;
 $NoDaf = "000.".str_pad($autonodaf, 3, "0", STR_PAD_LEFT);
+*/
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,12 +51,17 @@ require_once "bc27.cjs.php";
 <body oncontextmenu="return false;">
 <div id="w" style="padding:5px;">
 <form id="frm" name="frm" action="" method="post">
-    <div class="easyui-tabs" tools="#tab-tools" style="width:720px;height:490px;">               
+<input type="hidden" id="ket" name="ket" value="<?php echo $ket;?>">
+    <div class="easyui-tabs" tools="#tab-tools" style="width:720px;height:550px;">               
         <div title="Data Umum" style="padding:10px;">
-        <div id="ref">
-          &nbsp; Pilih Tujuan Pengiriman terlebih dahulu..<br>
-          &nbsp; Ref No. <select id="ref_id" name="ref_id"></select>
-        </div>
+        <div class="demo-info" style="margin-bottom:10px">
+            <div class="demo-tip icon-tip">&nbsp;</div>
+            <div>
+            Klik/pilih TPB Tujuan Barang Terlebih dahulu..
+            Setelah itu pilih Ref. No..
+            Lengkapi data-data lainnya.
+            </div>
+        </div>        
         
         <table>        
         <tr>        
@@ -196,7 +205,7 @@ require_once "bc27.cjs.php";
             <fieldset class="borderblue">            
             <table cellspacing="0" class="sub_table" width="100%">
             <tr>
-              <td colspan="2"><b>TPB TUJUAN BARANG</b></td>  
+              <td colspan="2"><b>TPB <?php if ($ket=='in') echo " ASAL "; else echo " TUJUAN "; ?> BARANG</b></td>  
               <td colspan="3">&nbsp;</td>
             </tr>
             <tr>
@@ -205,7 +214,7 @@ require_once "bc27.cjs.php";
               <select id="NmTuj" name="NmTuj" style="width:200px;">
               <option value=""></option>
               <?php 
-					$q="SELECT * FROM mst_perusahaan WHERE TpPrshn='c' ORDER BY NmPrshn";
+					$q="SELECT * FROM mst_perusahaan WHERE TpPrshn='$TpPrshn' ORDER BY NmPrshn";
 					$run = $pdo->query($q);
 		  		    $rs = $run->fetchAll(PDO::FETCH_ASSOC);
 					foreach ($rs as $r){
@@ -216,8 +225,10 @@ require_once "bc27.cjs.php";
 					?>
               </select>
               </td>
-              <td width="12%">&nbsp;</td>
-              <td width="38%">&nbsp;</td>
+                <td width="10%">Ref No. </td>
+                <td width="40%">              
+          			<select id="ref_id" name="ref_id"></select>
+                </td>
               </tr>
             </table>
             </fieldset>

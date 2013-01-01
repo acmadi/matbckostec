@@ -1,16 +1,11 @@
 <script type="text/javascript">
 $(function(){
 
-$('#ref').hide();
-
-$('#ref_id').combogrid({  
-	panelWidth:500
-});
 
 $('#w').window({ 
 	title:"FORM <?php echo strtoupper($NmMenu) ?>", 
     width:770,
-	height:535,	
+	height:600,	
 	top:0,
 	left:0,	
 	collapsible:false,
@@ -37,8 +32,7 @@ $('#btnTbh').click(function(){
 	enInput();
 	setdg();
 	setdg2();	
-	$('#KdKpbcTuj').focus();
-	$('#ref').show();
+	$('#NmTuj').focus();
 	$('#KdBarang').attr("disabled",true);	
 });
  
@@ -48,7 +42,7 @@ $('#btnUbh').click(function(){
 	
 	enInput();	
 	enTgl();
-	$('#ref').show();
+	$('#ref_id').combogrid({disabled:false});	
 	$('#KdBarang').attr("disabled",true);
 });
   
@@ -109,6 +103,17 @@ $('#btnCri').click(function(){
 	setdgCari();
 });
 
+$('#NmTuj').change(function(){
+	$('#ref_id').combogrid({
+		<?php if ($ket=='in'){ ?>
+			url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=inhdr&NmTuj='+$('#NmTuj').val(),  
+		<?php } else { ?>
+			url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=outhdr&NmTuj='+$('#NmTuj').val(),  
+		<?php } ?>
+		disabled:false
+	});	
+});
+
 $('#KdBarang').change(function(){
 	setUrBarang("KdBarang","UrBarang");
 });
@@ -118,12 +123,53 @@ $('#CAR').mask("999.999");
 $('#NoDaf').mask("999.999");
 $('#NoSegel').mask("999.999");
 dsInput();
+$('#dtdari').datebox({disabled:false});
+$('#dtsampai').datebox({disabled:false});
 
-$('#KdTp').change(function(){
+/*$('#KdTp').change(function(){
 	$('#ref_id').combogrid('setValue','');
 	setRef();
-});
+});*/
 
+<?php if ($ket=='in'){ ?>
+	$('#ref_id').combogrid({  
+		panelWidth:500,  	
+		idField:'matin_id',  
+		textField:'matin_no',  
+		url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=inhdr',  
+		mode:'remote',  
+		rownumbers:true,
+		fitColumns:true,
+		pagination:true,
+		pageList:[25,50,75,100],    
+		columns:[[  
+			{field:'matin_no',title:'Incoming No.',width:60},
+			{field:'matin_date',title:'Incoming Date',width:50},
+			{field:'supplier',title:'Supplier',width:50}
+		]],
+		onClickRow:function(index,row){setdg2Url(row)}  
+	});
+
+<?php } else { ?>
+	$('#ref_id').combogrid({  
+		panelWidth:500, 
+		width:150, 	
+		idField:'matout_id',  
+		textField:'matout_no',  
+		url: '<?php echo $basedir ?>models/bc27/bc27_grid.php?req=outhdr',  
+		mode:'remote',  
+		rownumbers:true,
+		fitColumns:true,
+		pagination:true,
+		pageList:[25,50,75,100],     
+		columns:[[  
+			{field:'matout_no',title:'Outgoing No.',width:60},
+			{field:'matout_date',title:'Outgoing Date',width:50},
+			{field:'cust',title:'Customer',width:50}
+		]],
+		onClickRow:function(index,row){setdg2Url(row)}  
+	});
+<?php } ?>
     
 });//Akhir Document Ready
 </script>

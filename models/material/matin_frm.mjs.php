@@ -165,6 +165,7 @@ function simpan(){
 		currency: $('#currency').val(),
 		
 		po_id: $('#po_id').val(),
+		po_no: $('#po_no').combogrid('getValue'),
 		supplier: $('#supplier').val(),
 		supl_do: $('#supl_do').val(),
 		supl_inv: $('#supl_inv').val(),

@@ -3,27 +3,30 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,
 		toolbar:"#toolbar",
 		fitColumns:false,
 		rownumbers:"true",
+		pagination:true,
+		pageList:[25,50,75,100],
 		frozenColumns:[[  
 			{field:'NmPrshn0',title:'NmPrshn0',width:80,hidden:true},
 			{field:'NmPrshn',title:'Nama',width:170},
 		]],
 		columns:[[			
 			{field:'TpPrshn',title:'TpPrshn',width:100,hidden:true},
-			{field:'NpwpPrshn',title:'NPWP',width:100},
-			{field:'AlmtPrshn',title:'Alamat',width:100},
-			{field:'Kota',title:'Kota',width:100},
-			{field:'Prov',title:'Provinsi',width:100},
+			{field:'NpwpPrshn',title:'NPWP',width:130},
+			{field:'AlmtPrshn',title:'Alamat',width:200},
+			/*{field:'Kota',title:'Kota',width:100},
+			{field:'Prov',title:'Provinsi',width:100},*/
 			{field:'Negara',title:'Negara',width:100},
 			{field:'fax',title:'Faks.',width:100},
 			{field:'tlp',title:'Telp.',width:100},
 			{field:'Status',title:'Status',width:100},
 			{field:'StatusKB',title:'Status KB',width:80},
 			{field:'Niper',title:'Skep. KB',width:100},
-			{field:'Cp',title:'Contact Person',width:100}
+			{field:'Cp',title:'Contact Person',width:100},
+			{field:'Valuta',title:'Valuta',width:100}
 			<?php if ($TpPrshn=='p'){ ?>,
 			{field:'NoPokokPpjk',title:'No. Pokok',width:100},
 			{field:'TgPokokPpjk',title:'Tgl. Pokok',width:100}

@@ -136,7 +136,7 @@ $runh=$pdo->query($q);
 $rsh=$runh->fetchAll(PDO::FETCH_ASSOC);
 
 
-$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,c.HsNo AS HsNo2,Sat AS Sat2,qty,FORMAT(qty, 2) AS qty2,price,FORMAT(price, 2) AS price2,(qty*price) AS amount,FORMAT(qty*price, 2) AS amount2
+$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,c.HsNo AS HsNo2,Sat AS Sat2,qty,FORMAT(qty, 2) AS qty2,price,FORMAT(price, 2) AS price2,(qty*price) AS amount,FORMAT(qty*price, 2) AS amount2, remark_det
 	  FROM pur_podet a 
 	  LEFT JOIN mst_barang b ON KdBarang = mat_id 
 	  LEFT JOIN mat_group c ON c.matgroup_code=b.MatGroup
@@ -231,7 +231,7 @@ $html .= '<tr>'.
 		 '<td align="right">'.$r['qty2'].' '.$r['Sat2'].'</td>'.
 		 '<td align="right">'.$r['price2'].'</td>'.
 		 '<td align="right">'.$r['amount2'].'</td>'.
-		 '<td>'.$r['remark'].'</td>'.
+		 '<td>'.$r['remark_det'].'</td>'.
 		 '</tr>';
 $no+=1;	
 $tot_qty += $r['qty'];

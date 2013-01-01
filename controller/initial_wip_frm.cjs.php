@@ -37,12 +37,14 @@ $('#KdBarang2').combogrid({
 	url: '<?php echo $basedir; ?>models/initial_wip_grid.php?req=dgDet',  
 	idField:'KdBarang2',  
 	textField:'KdBarang2',  
-	mode:'remote',  
-	fitColumns:true,  
+	mode:'remote',
+	rownumbers:true,  
+	fitColumns:true,
+	pagination:true,
+	pageList:[25,50,75,100],  
 	columns:[[  
 		{field:'KdBarang2',title:'Part Code',width:60},
-		{field:'PartNo',title:'Part No.',width:50},
-		{field:'NmBarang2',title:'Part Name',width:50},
+		{field:'NmBarang2',title:'Part No',width:50},
 		{field:'Sat2',title:'Unit',width:50}
 	]],
 	onSelect:function(index,row){insert_det(row)}  
@@ -230,7 +232,6 @@ $('#tl2Ubh2').click(function(){
 			index: index, 
 			row: { 
 				KdBarang2: $('#KdBarang2').combogrid('getValue'),
-				PartNo: $('#PartNo').val(),	
 				NmBarang2: $('#NmBarang2').val(),	
 				Sat2: $('#Sat2').val(),
 				qty: nformat2($('#qty').numberbox('getValue'),2)
@@ -243,7 +244,6 @@ $('#tl2Sim').click(function(){
 	$('#dlg').dialog('close');
 	$('#dg').datagrid('appendRow',{		
 		KdBarang2: $('#KdBarang2').combogrid('getValue'),
-		PartNo: $('#PartNo').val(),	
 		NmBarang2: $('#NmBarang2').val(),
 		Sat2: $('#Sat2').val(),
 		qty: nformat2($('#qty').numberbox('getValue'),2)

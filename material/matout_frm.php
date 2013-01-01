@@ -39,11 +39,11 @@ if ($rs){
 }
 .kolom4 {
 	float:left;
-	width:160px;	
+	width:140px;	
 }
 .kolom5 {
 	float:left;
-	width:70px;	
+	width:100px;	
 }
 .kolom6 {
 	float:left;
@@ -84,8 +84,19 @@ require_once "matout_frm.cjs.php";
         ?>
        </select>
       </span>
-      <span class="kolom5">Jenis BC</span>
+      <span class="kolom5">Outgoing Date</span>
       <span class="kolom6">
+      <input type="text" id="matout_date" name="matout_date" class="easyui-datebox" required maxlength="10" tabindex="10" style="width:100px">
+      </span>
+    </div> 
+    <div class="hdr">      
+      <span class="kolom1">WO No. </span>
+      <span class="kolom2">
+      <input type="hidden" id="wo_id" name="wo_id" style="width:100px">
+      <input name="wo_no" id="wo_no" style="width:100px"> 
+      </span>
+      <span class="kolom3">Jenis BC</span>
+      <span class="kolom4">
       <select name="KdJnsDok" id="KdJnsDok" style="width:80px">
         <option value=""></option>
         <?php
@@ -95,18 +106,7 @@ require_once "matout_frm.cjs.php";
                 echo "<option value=\"".$r['KdJnsDok']."\">".$r['UrJnsDok']."</option>";
         ?>
       </select>
-      </span>
-    </div> 
-    <div class="hdr">
-      <span class="kolom1">Outgoing Date</span>
-      <span class="kolom2">
-      <input type="text" id="matout_date" name="matout_date" class="easyui-datebox" required maxlength="10" tabindex="10" style="width:100px">
-      </span>
-      <span class="kolom3">WO No. </span>
-      <span class="kolom4">
-      <input type="hidden" id="wo_id" name="wo_id" style="width:100px">
-      <select name="wo_no" id="wo_no" style="width:150px"></select>  
-      </span>
+      </span>      
       <span class="kolom5"></span>
       <span class="kolom6">
       </span>
@@ -155,6 +155,10 @@ require_once "matout_frm.cjs.php";
     <tr>
       <td>Desc.</td>
       <td><input name="NmBarang2" type="text" id="NmBarang2" style="width:150px" readonly></td>
+    </tr>
+	<tr>
+      <td>Section</td>
+      <td><input name="twhmp" type="text" id="twhmp" style="width:150px" readonly></td>
     </tr>
     <tr>
       <td>Unit</td>

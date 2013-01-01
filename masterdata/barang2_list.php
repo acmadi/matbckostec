@@ -37,8 +37,7 @@ require_once "mst_list.cjs.php";
     Search
      <select id="pilcari" name="pilcari">
     	<option value="KdBarang">Part Code</option>
-        <option value="PartNo">Part No.</option>
-        <option value="NmBarang">Part Name</option>
+        <option value="NmBarang">Part No</option>
     </select> 
     <input type="text" id="txtcari" name="txtcari" style="width:100px">
     <a href="#" id="dtlCri" class="easyui-linkbutton" iconCls="icon-search"></a>

@@ -21,7 +21,7 @@ if ($req=='menu'){
 	$q .= "ORDER BY wo_no, wo_date ASC";
 } else if ($req=='list') {	
 	$wo_id = $_REQUEST["wo_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,PartNo,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty_plan, 2) AS qty
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,Ket,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty_plan, 2) AS qty
 		  FROM ppic_wodet a 
 		  LEFT JOIN mst_barang b ON KdBarang = fg_id 
 		  WHERE wo_id='$wo_id' 
@@ -32,7 +32,7 @@ if ($req=='menu'){
 		  ORDER BY so_no, so_date ASC";
 } else if ($req=='dgDet') {
 	$so_id = $_REQUEST["so_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,PartNo,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,Ket,NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
 		  FROM mkt_sorderdet a 
 		  LEFT JOIN mst_barang b ON KdBarang = fg_id 
 		  WHERE so_id='$so_id' 

@@ -3,7 +3,7 @@ function setdg(){
 	$('#dg').datagrid({  	
 		title:"",
 		width:736,
-		height:415,	
+		height:515,	
 		toolbar:"#toolCari",
 		fitColumns:"true",
 		rownumbers:"true",
@@ -35,8 +35,8 @@ function setdg(){
 				height:'auto',  
 				columns:[[  
 					{field:'KdBarang2',title:'Part Code',width:80},  
-					{field:'PartNo',title:'Part No.',width:80}, 
-					{field:'NmBarang2',title:'Part Name',width:100},  
+					{field:'NmBarang2',title:'Part No.',width:80}, 
+					{field:'Ket',title:'Part Name',width:100},  
 					{field:'Sat2',title:'Unit',width:80},  
 					{field:'qty',title:'Quantity',width:100,align:'right'}
 				]],  

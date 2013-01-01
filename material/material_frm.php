@@ -38,8 +38,12 @@ require_once "mst_frm.cjs.php";
 <div id="dlg" class="easyui-dialog" style="width:400px;height:440px;padding:10px" closed="true" buttons="#dlg-buttons">
 	<form id="fm" method="post" onSubmit="return false">
     <input type="hidden" name="TpBarang" id="TpBarang" value="">
- 	<table>
+ 	<table>    
     <tr>
+      <td width="114">Mat. Code.</td>
+      <td width="254"><input name="KdBarang0" type="hidden" id="KdBarang0" class="easyui-validatebox" value="">        <input name="KdBarang" type="text" id="KdBarang" class="easyui-validatebox" value="" size="20" maxlength="20" required></td>
+    </tr>
+	<tr>
       <td width="114">Mat. Group</td>
       <td width="254">
       <select name="MatGroup" id="MatGroup" class="easyui-validatebox" style="width:150px" required="true">
@@ -54,10 +58,6 @@ require_once "mst_frm.cjs.php";
       </select></td>
     </tr>
     <tr>
-      <td width="114">Mat. Code.</td>
-      <td width="254"><input name="KdBarang0" type="hidden" id="KdBarang0" class="easyui-validatebox" value="">        <input name="KdBarang" type="text" id="KdBarang" class="easyui-validatebox" value="" size="20" maxlength="20" required></td>
-    </tr>
-    <tr>
       <td>Desc.</td>
       <td><input name="NmBarang" type="text" id="NmBarang" class="easyui-validatebox" value="" size="30" maxlength="30" required></td>
     </tr>
@@ -69,36 +69,36 @@ require_once "mst_frm.cjs.php";
       <td>Die No.</td>
       <td><input name="DieNo" type="text" id="DieNo" class="easyui-validatebox" value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>UW/m</td>
       <td><input name="UWm" type="text" id="UWm" class="easyui-numberbox" groupSeparator="," decimalSeparator="." precision="4" value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>L/Pc</td>
       <td><input name="LPc" type="text" id="LPc" class="easyui-numberbox" groupSeparator="," decimalSeparator="." precision="4" value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>W/Pcs</td>
       <td><input name="WPcs" type="text" id="WPcs" class="easyui-numberbox" groupSeparator="," decimalSeparator="." precision="4" value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>L/Bar</td>
       <td><input name="LBar" type="text" id="LBar" class="easyui-numberbox" groupSeparator="," decimalSeparator="." value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>Pc/Bar</td>
       <td><input name="PcBar" type="text" id="PcBar" class="easyui-numberbox" groupSeparator="," decimalSeparator="." value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>W/Bar</td>
       <td><input name="WBar" type="text" id="WBar" class="easyui-numberbox" groupSeparator="," decimalSeparator="." precision="4" value="" size="20"></td>
     </tr>
-    <tr>
+    <tr style="display:none">
       <td>Finish</td>
       <td><input name="Finish" type="text" id="Finish" class="easyui-validatebox" value="" size="20"></td>
     </tr>
     <tr>
-      <td>t x w x h x m x p</td>
+      <td>Size</td>
       <td><input name="twhmp" type="text" id="twhmp" class="easyui-validatebox" value="" size="25"></td>
     </tr>    
     <tr>

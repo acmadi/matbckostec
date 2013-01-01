@@ -62,7 +62,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', end
 </head>
 <body oncontextmenu="return false;">
 <div class="bg">
-<h2 align="center" style="display:none"><br>MATERIAL RESOURCE PLANNING & BEA CUKAI SYSTEM <br>PT. KOSTEC INDONESIA (CIKARANG)</h2>
+<h2 align="center" style="display:none"><br>MATERIAL REQUIREMENTS PLANNING & BEA CUKAI SYSTEM <br>PT. KOSTEC INDONESIA (CIKARANG)</h2>
 <div id="w" class="easyui-dialog" iconCls="icon-login"  buttons="#dlg-buttons" closable="false" collapsible="false" minimizable="false" maximizable="false" title=" &nbsp;LOGIN" style="width:300px;height1250px; padding:10px;">
 <form id="frm" method="post" target="_blank">
 <table align="center" border="0" cellspacing="5" cellpadding="5">
