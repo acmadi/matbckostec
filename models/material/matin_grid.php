@@ -40,9 +40,10 @@ if ($req=='menu'){
 	echo json_encode($result);
 } else if ($req=='list') {	
 	$matin_id = $_REQUEST["matin_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,twhmp,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
 		  FROM mat_incdet a 
 		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
+		  LEFT JOIN mat_group c ON b.MatGroup=c.matgroup_code
 		  WHERE matin_id='$matin_id' 
 		  ORDER BY child_no ASC";
 		  
@@ -51,9 +52,10 @@ if ($req=='menu'){
 	echo json_encode($rs);		  
 } else if ($req=='dgDet') {
 	$po_id = $_REQUEST["po_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,matgroup_name,twhmp,Sat AS Sat2,FORMAT(qty, 2) AS qty,FORMAT(price, 2) AS price,FORMAT(qty*price, 2) AS amount
 		  FROM pur_podet a 
 		  LEFT JOIN mst_barang b ON KdBarang = mat_id 
+		  LEFT JOIN mat_group c ON a.MatGroup=c.matgroup_code
 		  WHERE po_id='$po_id' 
 		  ORDER BY child_no ASC";
 		  

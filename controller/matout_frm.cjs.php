@@ -194,7 +194,7 @@ $('#tl2Ubh2').click(function(){
 			index: index, 
 			row: { 
 				KdBarang2: $('#KdBarang2').combogrid('getValue'),
-				NmBarang2: $('#NmBarang2').val(),	
+				matgroup_name: $('#matgroup_name').val(),
 				twhmp: $('#twhmp').val(),
 				Sat2: $('#Sat2').val(),
 				qty: nformat2($('#qty').numberbox('getValue'),2)
@@ -207,7 +207,7 @@ $('#tl2Sim').click(function(){
 	$('#dlg').dialog('close');
 	$('#dg').datagrid('appendRow',{		
 		KdBarang2: $('#KdBarang2').combogrid('getValue'),
-		NmBarang2: $('#NmBarang2').val(),
+		matgroup_name: $('#matgroup_name').val(),
 		twhmp: $('#twhmp').val(),
 		Sat2: $('#Sat2').val(),
 		qty: nformat2($('#qty').numberbox('getValue'),2)

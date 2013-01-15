@@ -1,8 +1,8 @@
 <?php 
 $grp=$_SESSION['grup']; 
 switch ($grp){
-	case "admin":
-		$tm = "tree_data";
+	case "eksekutif":
+		$tm = "tree_data_eks";
 		break;
 	case "marketing":
 		$tm = "tree_data_mkt";
@@ -23,7 +23,7 @@ switch ($grp){
 		$tm = "tree_data_bc";
 		break;		
 	default://case "eksekutif":
-		$tm = "tree_data_eks";
+		$tm = "tree_data";
 		break;	
 }
 

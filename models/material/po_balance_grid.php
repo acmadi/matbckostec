@@ -20,11 +20,12 @@ if ($req=='menu'){
 	$q .= "ORDER BY po_no, po_date ASC";
 } else if ($req=='list') {	
 	$po_id = $_REQUEST["po_id"];
-	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2, NmBarang AS NmBarang2,HsNo AS HsNo2,Sat AS Sat2,FORMAT(qty, 2) AS qty,
+	$q = "SELECT KdBarang AS KdBarang3,KdBarang AS KdBarang2,matgroup_name,twhmp,Sat AS Sat2,FORMAT(qty, 2) AS qty,
 		 (SELECT IF(SUM(qty)>0,SUM(qty),0) FROM mat_incdet ia LEFT JOIN mat_inchdr ib ON ib.matin_id=ia.matin_id WHERE ib.po_id = a.po_id AND ia.mat_id = a.mat_id)
 		  AS qty_in
 		  FROM pur_podet a 		  
 		  LEFT JOIN mst_barang b ON KdBarang = a.mat_id 
+		  LEFT JOIN mat_group c ON b.MatGroup=c.matgroup_code
 		  WHERE po_id='$po_id' 
 		  ORDER BY child_no ASC";
 } else if ($req=='dgDet') {

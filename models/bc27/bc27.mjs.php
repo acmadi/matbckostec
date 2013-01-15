@@ -244,7 +244,7 @@ function setdg2(){
 	if ($('#fhidden').val()!=''){		
 		var CAR = $('#fhidden').val();	
 	} else {
-		var CAR = $('#CAR').val();	
+		var CAR = $('#CAR').val();
 	}
 			
 	$('#dg2').datagrid({  

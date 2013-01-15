@@ -11,7 +11,8 @@ function setdg(){
 		rownumbers:"true",
 		columns:[[  
 			{field:'KdBarang2',title:'Mat. Code',width:80},
-			{field:'NmBarang2',title:'Desc.',width:150},
+			{field:'matgroup_name',title:'Mat. Group',width:150},
+			{field:'twhmp',title:'Size',width:80},
 			{field:'Sat2',title:'Unit',width:80},
 			{field:'qty',title:'Qty.',width:100,align:'right'},
 			{field:'price',title:'Price',width:100,align:'right'},
@@ -74,7 +75,8 @@ function setComboGrid(){
 		fitColumns:true,  
 		columns:[[  
 			{field:'KdBarang2',title:'Mat. Code',width:60},
-			{field:'NmBarang2',title:'Desc.',width:50},
+			{field:'matgroup_name',title:'Mat. Group',width:150},
+			{field:'twhmp',title:'Size',width:80},
 			{field:'Sat2',title:'Unit',width:50}
 		]],
 		onClickRow:function(index,row){insert_det(row)}  
@@ -118,7 +120,7 @@ function insert_refUbh(row){
 }
 
 function insert_det(row){
-	$('#NmBarang2').val(row.NmBarang2);
+	$('#matgroup_name').val(row.matgroup_name);
 	$('#Sat2').val(row.Sat2);
 	$('#qty').numberbox('setValue',row.qty);
 	$('#price').numberbox('setValue',row.price);
